@@ -1,90 +1,151 @@
-# Project 3D - Portfolio
+# ✨ 3D Portfolio (Next.js 14)
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/78680563/227708528-0e803ddf-506e-4d8b-98bc-dd7bf0f1b518.png" alt="Om's Logo Image"/>
-</p>
+A modern developer portfolio built with Next.js 14 (App Router), Tailwind CSS, and Framer Motion. It features a clean hero section, grouped skills grid, experience timeline, projects gallery, and a contact form powered by EmailJS. Optional 3D backgrounds and models are available via React Three Fiber.
 
-This was my first project using Vite. Initially made using tutorial of [JavaScipt Mastery](https://youtu.be/0fYi8SGA20k?feature=shared).
+## 🔥 Highlights
 
-Work done on it other than the tutorial:-
-- Removed unused CSS.
-- Removed Extra Animations.
-- Made UI Faster.
-- Added a Resume Button (Where you can put a link to your resume).
-- Enhanced Visibility and solved Responsive UI Problems.
+- Next.js 14 App Router with static prerendering
+- Responsive UI with Tailwind CSS
+- Smooth section entrance and hover animations using Framer Motion
+- Grouped, uniform Skills grid (consistent look for all icons)
+- Experience timeline (react-vertical-timeline-component)
+- Projects section with source/demo links
+- Contact form using EmailJS
+- Optional 3D canvases (Computer/Earth/Stars) using react-three-fiber + drei
+- SEO metadata configured in `app/layout.tsx`
 
-This Project is hosted in Netlify : [3D Portfolio](https://portfoliobyompatel.netlify.app/)
+## 🧰 Tech Stack
 
-## :star: Give A Star
+- Framework: Next.js 14, React 18
+- Styling: Tailwind CSS
+- Motion: Framer Motion
+- Timeline: react-vertical-timeline-component
+- 3D (optional): three, @react-three/fiber, @react-three/drei, maath
 
-You can also give this repository a star to show more people and they can use this repository.
-
-# Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
-
-Prerequisites
-Before you start, make sure you have the following software installed on your computer:
-
-[![My Skills](https://skillicons.dev/icons?i=nodejs)](https://skillicons.dev)
-
-
-## ℹ️ How to use this Repository?
-
-1. Clone the repository to your local machine
-
-```bash
-  git clone https://github.com/omunite215/Project_3DPortfolio.git
+## 🗂️ Project Structure
 
 ```
-2. Navigate to the project directory
+app/
+  layout.tsx                 # Global layout + metadata
+  page.tsx                   # Home page sections
+  components/
+    Hero.tsx                 # Intro header (uses ComputersCanvas)
+    About.tsx                # About section
+    Experience.tsx           # Timeline
+    Tech.tsx                 # Grouped skills grid
+    Works.tsx                # Projects grid
+    Contact.tsx              # EmailJS contact form (uses EarthCanvas)
+    Navbar.tsx               # Top navigation
+    HigherOrderComponents/   # Section wrapper
+    canvas/                  # Optional 3D canvases: Ball, Computers, Earth, Stars
+  constants/index.ts         # All portfolio content in one place
+public/
+  projectimg/                # Project images
+  tech/                      # Technology icons
+  company/..., planet/...    # 3D textures (with license files)
+```
+
+## 🚀 Getting Started
+
+Prerequisites: Node.js 18+ and npm.
 
 ```bash
-  cd Project_3DPortfolio
-```
-3. Install the necessary dependencies
-```bash
-  npm install
+npm install
+npm run dev
 ```
 
-4. Start the development server
-```bash
-  npm run dev
+Open http://localhost:3000 to view the site.
+
+## 🎨 Personalize Your Portfolio
+
+Most content is centralized in `app/constants/index.ts`:
+
+- `navLinks`: navigation menu
+- `services`: top “what I do” badges
+- `technologyGroups` and `technologies`: grouped skills and flat list
+- `experiences`: timeline cards (icon, title, points)
+- `testimonials`: social/links cards
+- `projects`: project cards (image, tags, source/deploy links)
+
+Images live in `public/`:
+
+- Project images: `public/projectimg`
+- Skill icons: `public/tech`
+
+If an icon image isn’t available, use `public/projectimg/placeholder.svg` as a safe fallback (already used in Experience where needed).
+
+### 🧑‍🚀 Avatar and Remote Images
+
+Remote avatars from GitHub are allowed by `next.config.mjs`:
+
+```js
+images: {
+  remotePatterns: [{ protocol: "https", hostname: "avatars.githubusercontent.com" }]
+}
 ```
 
-The website should now be up and running on http://localhost:3000.
+Use Next/Image in `Hero.tsx` or `Navbar.tsx`:
 
-## 🏠 Built With:
+```tsx
+<Image src="https://avatars.githubusercontent.com/u/<your_id>" alt="Your Name" width={96} height={96} className="rounded-full" />
+```
 
-[![My Skills](https://skillicons.dev/icons?i=vscode,react,nextjs,threejs,tailwind,netlify)](https://skillicons.dev)
+### ✉️ EmailJS (Contact form)
 
-## 🛠 Skills
+Replace the placeholders in `app/components/Contact.tsx` with your own EmailJS credentials:
 
-[![My Skills](https://skillicons.dev/icons?i=html,css,js,ts,react,nextjs,tailwind,threejs)](https://skillicons.dev)
+```ts
+emailjs.send(
+  "<service_id>",
+  "<template_id>",
+  { from_name, to_name, from_email, to_email, message },
+  "<public_key>"
+)
+```
 
-## 🚀 About Me
-Specializations:
-- UI/UX Design.
-- Web Development
+Tip: For better security, you can move these values into environment variables and read them via `process.env`.
 
-## 🙋‍♂️ Connect With Me
+## 🧹 Optional: Remove 3D Completely
 
-[<img src="https://skillicons.dev/icons?i=github" />](https://github.com/omunite215)&nbsp;
-[<img src="https://skillicons.dev/icons?i=linkedin" />](https://www.linkedin.com/in/om-patel-401068143/)&nbsp;
-[<img src="https://skillicons.dev/icons?i=instagram" />](https://www.instagram.com/_21omp/)&nbsp;
-[<img src="https://skillicons.dev/icons?i=devto" />](https://portfoliobyom.netlify.app/)
+Three.js is used only for the background models/canvases. If you prefer a purely 2D site:
 
-## 🗒️ Authors
-- Om Patel
+1. In `Hero.tsx`, remove `<ComputersCanvas />` and adjust spacing.
+2. In `Contact.tsx`, remove the `<EarthCanvas />` section (right side) or replace it with a static image.
+3. Optionally delete `app/components/canvas/*` and their export usages.
+4. Remove these dependencies from `package.json` and reinstall:
+   - `three`, `@react-three/fiber`, `@react-three/drei`, `maath`.
 
-<p align="left">
-  <a href="https://skillicons.dev">
-    <a href="https://github.com/omunite215">
-      <img src="https://skillicons.dev/icons?i=github" />
-    </a>
-  </a>
-</p>
+The Skills section already uses a consistent flat grid, so no changes are required there.
 
-<p align="center">
-  <img src="https://github.com/omunite215/Project_3DPortfolio/assets/78680563/2fcf609b-e802-4fec-8c82-8f55fd043437" alt="Om's Logo Image"/>
-</p>
+## ☁️ Deploy
+
+### ▲ Vercel
+
+1. Push to GitHub.
+2. Import the repo in Vercel and deploy. No special build settings are required.
+
+### 🔷 Netlify
+
+Use the following:
+
+- Build command: `next build`
+- Publish directory: `.next`
+
+Ensure Next.js runtime support is enabled (Netlify Next.js adapter or Edge functions as needed).
+
+## ♿ Accessibility & Performance
+
+- All icons render via Next/Image for optimized loading.
+- Hover and motion are subtle; reduce motion can be respected with CSS if you choose to add it.
+- Asset sizes: prefer SVG for logos, PNG/WebP for photos.
+
+## 📄 Assets & Licenses
+
+- Logos and trademarks belong to their respective owners; used here for identification.
+- 3D textures include license files under `public/company/desktop_pc/license.txt` and `public/planet/license.txt`.
+- Provide attribution for any third‑party images you add.
+
+## 🤝 Contributing
+
+Issues and PRs are welcome for general improvements. For personal forks, just update the constants and images to match your profile.
+
