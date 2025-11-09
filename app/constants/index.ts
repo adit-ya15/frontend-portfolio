@@ -1,35 +1,15 @@
 export const navLinks = [
-	{
-		id: "about",
-		title: "About",
-	},
-	{
-		id: "work",
-		title: "Work",
-	},
-	{
-		id: "contact",
-		title: "Contact",
-	},
+	{ id: "about", title: "About" },
+	{ id: "work", title: "Experience" },
+	{ id: "projects", title: "Projects" },
+	{ id: "contact", title: "Contact" },
 ];
 
 const services = [
-	{
-		title: "UI/UX Designer",
-		icon: "/backend.webp",
-	},
-	{
-		title: "Full Stack Web Developer",
-		icon: "/web.webp",
-	},
-	{
-		title: "App Developer",
-		icon: "/mobile.webp",
-	},
-	{
-		title: "Software Engineer",
-		icon: "/creator.webp",
-	},
+	{ title: "Full-Stack Developer", icon: "/web.webp" },
+	{ title: "Cloud & DevOps Engineer", icon: "/backend.webp" },
+	{ title: "Backend & System Design", icon: "/creator.webp" },
+	{ title: "Open Source Contributor", icon: "/mobile.webp" },
 ];
 
 const technologies = [
@@ -89,41 +69,40 @@ const technologies = [
 
 const experiences = [
 	{
-		title: "Wordpress Developer & UI/UX Designer",
-		company_name: "A.V.M Auto",
-		icon: "/company/avm.webp",
+		title: "B.Tech Electrical Engineering",
+		company_name: "NIT Patna",
+		icon: "/projectimg/mern.png",
 		iconBg: "#383E56",
-		date: "2020 -  2023",
+		date: "2023 – 2027",
 		points: [
-			"Self-Taught Expertise: Gained proficiency in WordPress and UI/UX design through independent learning.",
-			"Collaborative Design: Worked closely with stakeholders to gather feedback and iterate on the portfolio website's interactivity.",
-			"Successful Website Development: Designed and developed a visually appealing and user-friendly portfolio website using WordPress.",
-			"Positive Business Impact: Contributed to +54.25% sales and overall business growth through the improved website."
+			"CGPA: 8.26 / 10",
+			"Exploring Golang, Microservices & Generative AI",
+			"Active in Hackslash community & ByteVerse hackathon organization",
 		],
 	},
 	{
-		title: "Next.JS Developer",
-		company_name: "Sparkbright Engineering",
-		icon: "/company/sparkbright.webp",
+		title: "SCS Cloud Platform (Personal Project)",
+		company_name: "SCS Cloud Platform Project",
+		icon: "/projectimg/issuetracker.png",
 		iconBg: "#E6DEDD",
-		date: "2023 - 2024",
+		date: "2024 – Present",
 		points: [
-			"Self-Taught Expertise: Gained proficiency in React.JS and Next.JS through independent learning.",
-			"Successful Website Development: Designed and developed a visually appealing and user-friendly portfolio website using Next.JS.",
-			"Collaborative Design: Worked closely with stakeholders to gather feedback and iterate on the portfolio website's interactivity."
+			"HLS transcoding, static hosting & object storage",
+			"Kubernetes-ready deployment (NGINX Ingress + Kind)",
+			"Payments via Cashfree + Redis BullMQ queue",
+			"Integrated AI assistant (Groq) for workflows",
 		],
 	},
 	{
-		title: "Software Developer",
-		company_name: "Way to Web Pvt. Ltd.",
-		icon: "/company/wtw.jpg",
+		title: "Open Source & DevOps",
+		company_name: "Community & Tooling",
+		icon: "/tech/github.webp",
 		iconBg: "#E6DEDD",
-		date: "2024 - Present",
+		date: "Ongoing",
 		points: [
-			"Developing and maintaining Wordpress Site for A.V.M Auto The Car Body Shop based in Ahmedabad, Gujarat India.",
-			"Analyzing feedbacks and fixing bugs.",
-			"Search Engine Optimization.",
-			"Design Maintainence and hosting maintenance.",
+			"1000+ GitHub contributions & 250+ LeetCode problems solved",
+			"Published NPM packages: create-express-mongo-prod, jwt-auth-pack",
+			"CI/CD automation with Jenkins, ArgoCD & Terraform experiments",
 		],
 	},
 ];
@@ -131,43 +110,24 @@ const experiences = [
 const testimonials = [
 	{
 		id: 1,
-		testimonial:
-			"Behance is a social media platform owned by Adobe whose main focus is to showcase and discover creative work.",
-		name: "Om Patel",
-		image: "/socialmedia/behance.svg",
-		link: "https://www.behance.net/omthecreator",
+		testimonial: "Connect with me professionally on LinkedIn for experience, achievements & collaboration opportunities.",
+		name: "Suryansh Verma",
+		image: "/socialmedia/linkedin.svg",
+		link: "https://linkedin.com/in/suryanshvermaa",
 	},
 	{
 		id: 2,
-		testimonial:
-			"LinkedIn is a business and employment-focused social media platform that works through websites and mobile apps.",
-		name: "Om Patel",
-		image: "/socialmedia/linkedin.svg",
-		link: "https://www.linkedin.com/in/om-patel-401068143/",
+		testimonial: "Explore my portfolio showcasing projects, cloud-native tooling & experiments.",
+		name: "Suryansh Verma",
+		image: "/socialmedia/portfolio.svg",
+		link: "https://suryanshverma.vercel.app",
 	},
 	{
 		id: 3,
-		testimonial:
-			"Dribbble is a self-promotion and social networking platform for digital designers and creatives. It serves as a design portfolio.",
-		name: "Om Patel",
-		image: "/socialmedia/dribble.svg",
-		link: "https://dribbble.com/om2121",
-	},
-	{
-		id: 4,
-		testimonial:
-			"Also do check out my UI/UX Portfolio where I have shared by design studies.",
-		name: "Om Patel",
-		image: "/socialmedia/portfolio.svg",
-		link: "https://omthecreator.netlify.app/",
-	},
-	{
-		id: 5,
-		testimonial:
-			"Also do check out my Github Profile where I have shared all my codes from basic to advanced.",
-		name: "Om Patel",
+		testimonial: "Dive into my open-source contributions, NPM packages & backend engineering repos on GitHub.",
+		name: "Suryansh Verma",
 		image: "/tech/github.webp",
-		link: "https://github.com/omunite215",
+		link: "https://github.com/suryanshvermaa",
 	},
 ];
 
@@ -185,141 +145,95 @@ const projects :{
 	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web"
 }[] = [
 	{
-		name: "A.V.M Auto Portfolio",
-		description:
-			"A Designed and developed a visually appealing and user-friendly portfolio website using WordPress.",
+		name: "SCS Cloud Platform",
+		description: "Cloud-native platform for HLS transcoding, static hosting & object storage with Kubernetes-ready deployment & AI assistant integration.",
 		tags: [
-			{
-				name: "wordpress",
-				color: "blue-text-gradient",
-			},
-			{
-				name: "google-translate",
-				color: "green-text-gradient",
-			},
-		],
-		image: "/projectimg/avm.webp",
-		platform: "Wordpress",
-		deploy_link: "https://avmauto.in/",
-	},
-	{
-		name: "Sparkbright Engineering Portfolio",
-		description:
-			" Designed and developed a visually appealing and user-friendly portfolio website using Next.JS.",
-		tags: [
-			{
-				name: "next",
-				color: "red-text-gradient",
-			},
-			{
-				name: "Next UI",
-				color: "orange-text-gradient",
-			},
-			{
-				name: "tailwind",
-				color: "blue-text-gradient",
-			},
-		],
-		image: "/projectimg/sparkbright.png",
-		source_code_link: "https://github.com/omunite215/React-Admin-DashBoard",
-		platform: "Web",
-		deploy_link: "https://sparkbright.in/",
-	},
-	{
-		name: "HooBank",
-		description:
-			"A responsive Bank HomePage showcasing different features such as various payment gateways integration, easy money transfer, advanced security, etc. It has a beautiful interface made using Tailwind CSS and React",
-		tags: [
-			{
-				name: "next",
-				color: "green-text-gradient",
-			},
-			{
-				name: "tailwind",
-				color: "blue-text-gradient",
-			},
-		],
-		image: "/projectimg/hoobank.webp",
-		source_code_link: "https://github.com/omunite215/hoobank",
-		platform: "Vercel",
-		deploy_link: "https://hoobankbyom.netlify.app/",
-	},
-	{
-		name: "MERN Dashboard",
-		description:
-			" Designed and developed a visually appealing and user-friendly Data Analytics Dashboard using MERN",
-		tags: [
-			{
-				name: "react",
-				color: "blue-text-gradient",
-			},
-			{
-				name: "materialui",
-				color: "orange-text-gradient",
-			},
-			{
-				name: "MongoDB",
-				color: "green-text-gradient",
-			},
-			{
-				name: "Express",
-				color: "pink-text-gradient",
-			},
+			{ name: "nodejs", color: "blue-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+			{ name: "kubernetes", color: "orange-text-gradient" },
+			{ name: "aws", color: "pink-text-gradient" },
 		],
 		image: "/projectimg/mern.png",
-		source_code_link: "https://github.com/omunite215/Project_MERN-Dashboard",
+		source_code_link: "https://github.com/suryanshvermaa/scsCloud",
 		platform: "Web",
-		deploy_link: "https://admin-frontend-r705.onrender.com/",
+		deploy_link: "https://github.com/suryanshvermaa/scsCloud",
 	},
 	{
-		name: "Metaverse Web 3.0",
-		description:
-			"A Modern UI/UX Landing Page using Framer Motion and TailwindCSS with a feel and looks of Web 3.0",
+		name: "Event Management App",
+		description: "Mobile-first event platform with OTP + JWT auth & fast search for discovering and managing events.",
 		tags: [
-			{
-				name: "react",
-				color: "blue-text-gradient",
-			},
-			{
-				name: "tailwind",
-				color: "green-text-gradient",
-			},
-			{
-				name: "framer-motion",
-				color: "orange-text-gradient",
-			},
+			{ name: "react", color: "blue-text-gradient" },
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "mongodb", color: "green-text-gradient" },
+		],
+		image: "/projectimg/sparkbright.png",
+		source_code_link: "https://github.com/suryanshvermaa/eventManagementApp",
+		platform: "Web",
+		deploy_link: "https://github.com/suryanshvermaa/eventManagementApp",
+	},
+	{
+		name: "Hackslash Official Website",
+		description: "Fast, animated community website boosting engagement & navigation performance using Next.js + Tailwind + Framer Motion.",
+		tags: [
+			{ name: "nextjs", color: "blue-text-gradient" },
+			{ name: "tailwind", color: "green-text-gradient" },
+			{ name: "framer-motion", color: "orange-text-gradient" },
 		],
 		image: "/projectimg/metaverse.png",
-		source_code_link: "https://github.com/omunite215/Project_Metaverse",
 		platform: "Vercel",
-		deploy_link: "https://project-metaverse-beta.vercel.app/",
+		deploy_link: "https://hackslashnitp.vercel.app",
 	},
 	{
-		name: "Issue Tracker",
-		description:
-			"A Next.JS Full Stack Issue Tracker made using Next.Js, ShadCN UI, Prisma, mySQL with latest features like Next.JS Server Components, and Serverless features.",
+		name: "Two-Tier Node.js Deployment",
+		description: "Highly scalable two-tier Node.js + MongoDB service on AWS EKS with Jenkins CI/CD & ArgoCD GitOps.",
 		tags: [
-			{
-				name: "next",
-				color: "blue-text-gradient",
-			},
-			{
-				name: "tailwind",
-				color: "green-text-gradient",
-			},
-			{
-				name: "shadCN",
-				color: "orange-text-gradient",
-			},
-			{
-				name: "mySQL",
-				color: "green-text-gradient",
-			},
+			{ name: "kubernetes", color: "orange-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+			{ name: "aws", color: "blue-text-gradient" },
 		],
 		image: "/projectimg/issuetracker.png",
-		source_code_link: "https://github.com/omunite215/Project_Issue-Tracker",
-		platform: "Vercel",
-		deploy_link: "https://project-issue-tracker.vercel.app/",
+		source_code_link: "https://github.com/suryanshvermaa/Two-Tier-Nodejs-MongoDb-App-deployment",
+		platform: "Web",
+		deploy_link: "https://github.com/suryanshvermaa/Two-Tier-Nodejs-MongoDb-App-deployment",
+	},
+	{
+		name: "create-express-mongo-prod",
+		description: "CLI scaffolder for production-ready Express.js apps with Docker, ESLint, Prettier & Mongo integration (300+ downloads).",
+		tags: [
+			{ name: "npm", color: "pink-text-gradient" },
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+		],
+		image: "/projectimg/hoobank.webp",
+		source_code_link: "https://github.com/suryanshvermaa/create-express-mongo-prod",
+		platform: "Web",
+		deploy_link: "https://www.npmjs.com/package/create-express-mongo-prod",
+	},
+	{
+		name: "My Drogon App (C++)",
+		description: "Modern C++ web app with Drogon + PostgreSQL featuring JWT auth, modular middleware & Kubernetes/Jenkins deployment.",
+		tags: [
+			{ name: "cpp", color: "blue-text-gradient" },
+			{ name: "postgresql", color: "green-text-gradient" },
+			{ name: "jwt", color: "orange-text-gradient" },
+		],
+		image: "/projectimg/avm.webp",
+		source_code_link: "https://github.com/suryanshvermaa/my-fastest-drogon-app-cpp",
+		platform: "Web",
+		deploy_link: "https://github.com/suryanshvermaa/my-fastest-drogon-app-cpp",
+	},
+	{
+		name: "jwt-auth-pack",
+		description: "Lightweight JWT middleware for Express + TypeScript delivering fast token validation & plug-and-play setup.",
+		tags: [
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "typescript", color: "blue-text-gradient" },
+			{ name: "jwt", color: "pink-text-gradient" },
+		],
+		image: "/projectimg/sparkbright.png",
+		source_code_link: "https://github.com/suryanshvermaa/jwt-auth-pack",
+		platform: "Web",
+		deploy_link: "https://www.npmjs.com/package/jwt-auth-pack",
 	},
 ];
 

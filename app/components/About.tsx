@@ -54,13 +54,8 @@ const About = () => {
 				variants={fadeIn("", "", 0.1, 1)}
 				className="mt-4 text-secondary text-[17px] max-w-[3xl] leading-[30px]"
 			>
-				Dynamic Full-Stack Developer with a passion for crafting innovative web
-				applications. Proven expertise in React, Next.js, Node.js, and Python.
-				Skilled in UI/UX design and DevOps (Docker). Proven ability to deliver high-quality,
-				scalable solutions, as demonstrated by a strong portfolio of full-stack
-				Next.js projects and modern UI/UX designs. Eager to leverage my
-				technical prowess and problem-solving abilities to contribute to
-				cutting-edge projects and drive innovation.
+				I’m <span className="text-white font-semibold">Suryansh Verma</span>, a
+				<strong className="text-white"> Full-Stack Developer & Cloud/DevOps Engineer</strong> passionate about designing scalable, distributed, cloud-native systems using Node.js, Golang, C++, Docker, Kubernetes, and AWS. I love building production-ready platforms that blend elegant backend design with robust infrastructure & automation. Currently exploring Golang, Microservice Architecture & Generative AI while contributing to open-source and crafting developer-first tools. Open to internships and collaboration on cloud, backend, or DevOps projects.
 			</motion.p>
 			<div className="mt-20 flex flex-wrap gap-10">
 				{services.map((service, index) => (

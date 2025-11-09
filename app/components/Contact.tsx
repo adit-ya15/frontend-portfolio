@@ -27,19 +27,19 @@ const Contact = () => {
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setLoading(true);
-		emailjs
-			.send(
-				"service_91ssn8g",
-				"template_jjegxdr",
-				{
-					from_name: form.name,
-					to_name: "Om Patel",
-					from_email: form.email,
-					to_email: "omunite21@gmail.com",
-					message: form.message,
-				},
-				"VeFeVdEHL9F9_i6xp",
-			)
+				emailjs
+					.send(
+						"service_91ssn8g",
+						"template_jjegxdr",
+						{
+							from_name: form.name,
+							to_name: "Suryansh Verma",
+							from_email: form.email,
+							to_email: "suryanshverma.dev.official@gmail.com",
+							message: form.message,
+						},
+						"VeFeVdEHL9F9_i6xp",
+					)
 			.then(() => {
 				setLoading(false);
 				alert(
@@ -107,7 +107,7 @@ const Contact = () => {
 						type="submit"
 						className="bg-tertiary py-3 px-8 outline-none w-fit text-white font-bold shadow-md shadow-primary rounded-xl"
 					>
-						{loading ? "Sending..." : "Sent"}
+						{loading ? "Sending..." : "Send"}
 					</button>
 				</form>
 			</motion.div>
