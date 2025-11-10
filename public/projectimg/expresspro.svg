@@ -1,0 +1,51 @@
+<svg width="400" height="300" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#915EFF;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00cea8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#f12711;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5af19;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="300" fill="#151030"/>
+  
+  <!-- Express Logo inspired icon -->
+  <g transform="translate(80, 80)">
+    <!-- Main Express-style brackets -->
+    <path d="M 0 70 L 40 10 L 80 70" stroke="url(#grad1)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 80 70 L 120 10 L 160 70" stroke="url(#grad1)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 160 70 L 200 10 L 240 70" stroke="url(#grad1)" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Pro badge circle -->
+    <circle cx="220" cy="20" r="28" fill="url(#grad2)" opacity="0.9"/>
+    <text x="220" y="28" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle">PRO</text>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="200" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="url(#grad1)" text-anchor="middle">ExpressPro</text>
+  <text x="200" y="230" font-family="Arial, sans-serif" font-size="14" fill="#aaa6c3" text-anchor="middle">Enhanced Express.js Framework</text>
+  
+  <!-- Feature icons -->
+  <g transform="translate(60, 250)">
+    <!-- JWT icon -->
+    <circle cx="0" cy="0" r="12" fill="#915EFF" opacity="0.3"/>
+    <text x="0" y="5" font-family="monospace" font-size="14" font-weight="bold" fill="#915EFF" text-anchor="middle">🔐</text>
+    
+    <!-- TypeScript icon -->
+    <circle cx="90" cy="0" r="12" fill="#00cea8" opacity="0.3"/>
+    <text x="90" y="5" font-family="monospace" font-size="14" font-weight="bold" fill="#00cea8" text-anchor="middle">TS</text>
+    
+    <!-- NPM icon -->
+    <circle cx="180" cy="0" r="12" fill="#f5af19" opacity="0.3"/>
+    <text x="180" y="5" font-family="monospace" font-size="14" font-weight="bold" fill="#f5af19" text-anchor="middle">📦</text>
+    
+    <!-- API icon -->
+    <circle cx="270" cy="0" r="12" fill="#bf61ff" opacity="0.3"/>
+    <text x="270" y="5" font-family="monospace" font-size="14" font-weight="bold" fill="#bf61ff" text-anchor="middle">⚡</text>
+  </g>
+</svg>

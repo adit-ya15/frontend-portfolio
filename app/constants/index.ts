@@ -350,6 +350,20 @@ const projects :{
 		platform: "Web",
 		deploy_link: "https://github.com/suryanshvermaa/microservices",
 	},
+	{
+		name: "ExpressPro",
+		description: "Enhanced Express.js with built-in JWT auth, error handling, async utilities, and TypeScript support. Published NPM package.",
+		tags: [
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "typescript", color: "blue-text-gradient" },
+			{ name: "jwt", color: "pink-text-gradient" },
+			{ name: "npm", color: "green-text-gradient" },
+		],
+		image: "/projectimg/expresspro.svg",
+		source_code_link: "https://github.com/suryanshvermaa/expresspro",
+		platform: "Web",
+		deploy_link: "https://www.npmjs.com/package/expresspro",
+	},
 ];
 
 export { services, technologies, technologyGroups, experiences, testimonials, projects };
