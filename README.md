@@ -1,151 +1,177 @@
-# ✨ 3D Portfolio (Next.js 14)
+# 🚀 Suryansh Verma — 3D Portfolio (Next.js)
 
-A modern developer portfolio built with Next.js 14 (App Router), Tailwind CSS, and Framer Motion. It features a clean hero section, grouped skills grid, experience timeline, projects gallery, and a contact form powered by EmailJS. Optional 3D backgrounds and models are available via React Three Fiber.
+Welcome to the source code of **Suryansh Verma’s interactive developer portfolio** — a sleek and immersive experience crafted with **Next.js (App Router)**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and optional **3D visuals powered by Three.js / @react-three/fiber** 🎨✨  
 
-## 🔥 Highlights
+This portfolio showcases professional experience, projects, and technical expertise with an emphasis on **clean design**, **smooth animations**, and **easy customization**.
 
-- Next.js 14 App Router with static prerendering
-- Responsive UI with Tailwind CSS
-- Smooth section entrance and hover animations using Framer Motion
-- Grouped, uniform Skills grid (consistent look for all icons)
-- Experience timeline (react-vertical-timeline-component)
-- Projects section with source/demo links
-- Contact form using EmailJS
-- Optional 3D canvases (Computer/Earth/Stars) using react-three-fiber + drei
-- SEO metadata configured in `app/layout.tsx`
+---
 
-## 🧰 Tech Stack
+## 🎯 **Key Objectives**
 
-- Framework: Next.js 14, React 18
-- Styling: Tailwind CSS
-- Motion: Framer Motion
-- Timeline: react-vertical-timeline-component
-- 3D (optional): three, @react-three/fiber, @react-three/drei, maath
+- 🚀 Present projects, experience, and technical skills clearly  
+- 🛠️ Simplify customization with centralized constants  
+- 🌌 Provide optional 3D visual polish while supporting a fast, 2D fallback  
 
-## 🗂️ Project Structure
+---
+
+## 🏠 **Home Page Overview**
+
+![Home page diagram - Homepage preview](public/diagrams/HomePage.png)
+
+*Figure: Overview of the homepage layout and major sections.*
+
+---
+
+## 🔗 **Quick Links**
+
+- 💻 **Repo:** [github.com/suryanshvermaa/3DPortfolio](https://github.com/suryanshvermaa/3DPortfolio)  
+- ⚙️ **Framework:** Next.js 14 (App Router)  
+- 🧠 **Language:** TypeScript  
+
+---
+
+## ✨ **Features**
+
+- ⚡ Modern **Next.js App Router** setup  
+- 🎨 **Tailwind CSS** utility-first styling  
+- 🌀 **Framer Motion** animations for smooth transitions  
+- 🌍 **Optional 3D Scenes** — Computers, Earth, and Stars using Three.js  
+- 📬 **Contact Form** powered by EmailJS  
+- 🤖 **AI Assistant Chatbot** using a custom server-side API  
+- 🧩 **Centralized content** in `app/constants` for effortless personalization  
+
+---
+
+## 🧰 **Requirements**
+
+- 🟢 Node.js 18+ (or use **Bun** — repo includes `bun.lockb`)  
+- 📦 npm or yarn  
+
+---
+
+## ⚙️ **Local Setup**
+
+1. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+2. **Configure environment variables**  
+   Copy `.env.example` (if available) and fill in required values.
+
+   **Important environment variables:**
+   - `UPSTASH_URL`, `UPSTASH_TOKEN` — optional (for Upstash Redis)
+   - `MY_EMAIL`, `MY_PASSWORD` — SMTP credentials for Nodemailer
+   - `GROQ_API_KEY` — for Groq SDK (chat model)
+   - EmailJS public/private keys — used in `Contact.tsx`  
+
+   ⚠️ Keep secrets out of source control.  
+   For Vercel or similar, set these via project settings.
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Visit 👉 [http://localhost:3000](http://localhost:3000)
+
+4. **Build for production**
+   ```bash
+   npm run build
+   npm start
+   ```
+
+5. **Lint the project**
+   ```bash
+   npm run lint
+   ```
+
+---
+
+## 🏗️ **Project Structure**
 
 ```
 app/
-  layout.tsx                 # Global layout + metadata
-  page.tsx                   # Home page sections
-  components/
-    Hero.tsx                 # Intro header (uses ComputersCanvas)
-    About.tsx                # About section
-    Experience.tsx           # Timeline
-    Tech.tsx                 # Grouped skills grid
-    Works.tsx                # Projects grid
-    Contact.tsx              # EmailJS contact form (uses EarthCanvas)
-    Navbar.tsx               # Top navigation
-    HigherOrderComponents/   # Section wrapper
-    canvas/                  # Optional 3D canvases: Ball, Computers, Earth, Stars
-  constants/index.ts         # All portfolio content in one place
-public/
-  projectimg/                # Project images
-  tech/                      # Technology icons
-  company/..., planet/...    # 3D textures (with license files)
+ ┣ layout.tsx           → Global layout & metadata
+ ┣ page.tsx             → Top-level page rendering sections
+ ┣ api/                 → API routes (chatbot, mail, config)
+ ┣ bot/                 → Chat assistant logic
+ ┣ components/          → React UI + 3D components
+public/                 → Static assets (images, textures, icons)
+tailwind.config.ts      → Tailwind CSS setup
+next.config.mjs         → Next.js configuration
 ```
 
-## 🚀 Getting Started
+🪄 **Tip:** Edit `app/constants/index.ts` to personalize projects, experience, and technologies.
 
-Prerequisites: Node.js 18+ and npm.
+---
 
-```bash
-npm install
-npm run dev
-```
+## 🧠 **Environment & Config Notes**
 
-Open http://localhost:3000 to view the site.
+- Update `next.config.mjs` → `images.remotePatterns` for external image hosts (e.g., GitHub avatars).  
+- `app/api/config.ts` includes **SMTP** and **Upstash Redis** clients — remove or stub if unused.  
+- The chatbot logic in `app/bot/functions.ts` uses **Groq API** — update models or keys as needed.  
 
-## 🎨 Personalize Your Portfolio
+---
 
-Most content is centralized in `app/constants/index.ts`:
+## 🧩 **Customization Tips**
 
-- `navLinks`: navigation menu
-- `services`: top “what I do” badges
-- `technologyGroups` and `technologies`: grouped skills and flat list
-- `experiences`: timeline cards (icon, title, points)
-- `testimonials`: social/links cards
-- `projects`: project cards (image, tags, source/deploy links)
+- Update content inside `app/constants/index.ts` (projects, experiences, technologies).  
+- To remove **3D effects** and make the site fully 2D:
+  1. Remove `<ComputersCanvas />`, `<EarthCanvas />`, and `<StarsCanvas />` from components.
+  2. Uninstall:
+     ```bash
+     npm uninstall three @react-three/fiber @react-three/drei maath
+     ```
+- Modify chatbot behavior via `/api/chatbot` in `app/api/chatbot/route.ts`.
 
-Images live in `public/`:
+---
 
-- Project images: `public/projectimg`
-- Skill icons: `public/tech`
+## ☁️ **Deployment**
 
-If an icon image isn’t available, use `public/projectimg/placeholder.svg` as a safe fallback (already used in Experience where needed).
+- **Vercel (Recommended)**  
+  - Import repo → Configure environment variables in dashboard.  
+  - Auto-detects Next.js + App Router.
 
-### 🧑‍🚀 Avatar and Remote Images
+- **Other Hosts:**  
+  - Build with `npm run build`  
+  - Serve `.next` folder  
+  - Some providers require specific Next.js adapters.
 
-Remote avatars from GitHub are allowed by `next.config.mjs`:
+---
 
-```js
-images: {
-  remotePatterns: [{ protocol: "https", hostname: "avatars.githubusercontent.com" }]
-}
-```
+## 🧩 **Troubleshooting**
 
-Use Next/Image in `Hero.tsx` or `Navbar.tsx`:
+- ❌ **Images not loading?**  
+  Check that `next.config.mjs` allows the remote image hosts.  
 
-```tsx
-<Image src="https://avatars.githubusercontent.com/u/<your_id>" alt="Your Name" width={96} height={96} className="rounded-full" />
-```
+- 📧 **SMTP issues?**  
+  Verify credentials and consider secure alternatives (SendGrid, Mailgun).  
 
-### ✉️ EmailJS (Contact form)
+- 🤖 **Chatbot errors?**  
+  Inspect server logs (`/api/chatbot`) and confirm API keys are valid.  
 
-Replace the placeholders in `app/components/Contact.tsx` with your own EmailJS credentials:
+---
 
-```ts
-emailjs.send(
-  "<service_id>",
-  "<template_id>",
-  { from_name, to_name, from_email, to_email, message },
-  "<public_key>"
-)
-```
+## 🤝 **Contributing**
 
-Tip: For better security, you can move these values into environment variables and read them via `process.env`.
+Contributions and PRs are always welcome!  
+For personal forks:
+- Update constants in `app/constants`
+- Replace assets in `public/`
+- Deploy your personalized version 🚀
 
-## 🧹 Optional: Remove 3D Completely
+If submitting changes to the template, please include:
+- A brief summary  
+- Preview screenshots  
 
-Three.js is used only for the background models/canvases. If you prefer a purely 2D site:
+---
 
-1. In `Hero.tsx`, remove `<ComputersCanvas />` and adjust spacing.
-2. In `Contact.tsx`, remove the `<EarthCanvas />` section (right side) or replace it with a static image.
-3. Optionally delete `app/components/canvas/*` and their export usages.
-4. Remove these dependencies from `package.json` and reinstall:
-   - `three`, `@react-three/fiber`, `@react-three/drei`, `maath`.
+## 💖 **Acknowledgements**
 
-The Skills section already uses a consistent flat grid, so no changes are required there.
+Built with passion using:
+**Next.js**, **Tailwind CSS**, **Framer Motion**, and **React Three Fiber** 🧠⚡  
 
-## ☁️ Deploy
+---
 
-### ▲ Vercel
-
-1. Push to GitHub.
-2. Import the repo in Vercel and deploy. No special build settings are required.
-
-### 🔷 Netlify
-
-Use the following:
-
-- Build command: `next build`
-- Publish directory: `.next`
-
-Ensure Next.js runtime support is enabled (Netlify Next.js adapter or Edge functions as needed).
-
-## ♿ Accessibility & Performance
-
-- All icons render via Next/Image for optimized loading.
-- Hover and motion are subtle; reduce motion can be respected with CSS if you choose to add it.
-- Asset sizes: prefer SVG for logos, PNG/WebP for photos.
-
-## 📄 Assets & Licenses
-
-- Logos and trademarks belong to their respective owners; used here for identification.
-- 3D textures include license files under `public/company/desktop_pc/license.txt` and `public/planet/license.txt`.
-- Provide attribution for any third‑party images you add.
-
-## 🤝 Contributing
-
-Issues and PRs are welcome for general improvements. For personal forks, just update the constants and images to match your profile.
-
+### 🕓 **Last Updated:** November 10, 2025  
+Made with ❤️ by **Suryansh Verma**

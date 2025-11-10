@@ -34,14 +34,22 @@ const ComputersCanvas = () => {
 	useEffect(() => {
 		const mediaQuery = window.matchMedia("(max-width: 500px)");
 		setIsMobile(mediaQuery.matches);
-		const handleMediaQueryChange = (event: MediaQueryListEvent) => {
-			setIsMobile(event.matches);
+		const handleMediaQueryChange = (event: MediaQueryListEvent | MediaQueryList) => {
+			// event may be a MediaQueryListEvent (modern) or MediaQueryList (legacy listener params)
+			if (typeof (event as MediaQueryListEvent).matches === "boolean") {
+				setIsMobile((event as MediaQueryListEvent).matches);
+			} else {
+				setIsMobile((event as MediaQueryList).matches);
+			}
 		};
-		mediaQuery.addEventListener("change", handleMediaQueryChange);
 
-		return () => {
-			mediaQuery.removeEventListener("change", handleMediaQueryChange);
-		};
+		if (typeof mediaQuery.addEventListener === "function") {
+			mediaQuery.addEventListener("change", handleMediaQueryChange as any);
+			return () => mediaQuery.removeEventListener("change", handleMediaQueryChange as any);
+		} else if (typeof (mediaQuery as any).addListener === "function") {
+			(mediaQuery as any).addListener(handleMediaQueryChange);
+			return () => (mediaQuery as any).removeListener(handleMediaQueryChange);
+		}
 	}, []);
 
 	return (

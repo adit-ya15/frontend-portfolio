@@ -12,8 +12,17 @@ const Hero = () => {
 		const mq = window.matchMedia("(max-width: 639px)");
 		const apply = () => setIsMobile(mq.matches);
 		apply();
-		mq.addEventListener("change", apply);
-		return () => mq.removeEventListener("change", apply);
+
+		// Some browsers (older mobile webviews) don't implement
+		// MediaQueryList.addEventListener/removeEventListener. Fallback to
+		// addListener/removeListener when necessary.
+		if (typeof mq.addEventListener === "function") {
+			mq.addEventListener("change", apply);
+			return () => mq.removeEventListener("change", apply);
+		} else if (typeof (mq as any).addListener === "function") {
+			(mq as any).addListener(apply);
+			return () => (mq as any).removeListener(apply);
+		}
 	}, []);
 
 	return (
