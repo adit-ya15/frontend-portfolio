@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ComputersCanvas } from "./canvas";
 
 const Hero = () => {
-	const [isMobile, setIsMobile] = useState(false);
+	const [isMobile, setIsMobile] = useState<boolean | null>(null);
 
 	useEffect(() => {
 		// Detect mobile screens where navbar collapses (below 640px / sm breakpoint)
@@ -44,12 +44,12 @@ const Hero = () => {
 					</div>
 				</div>
 			</div>
-			{isMobile && (
+			{isMobile === true && (
 				<div className="absolute left-0 right-0 top-[280px] xs:top-[320px] h-[400px] xs:h-[450px]">
 					<ComputersCanvas />
 				</div>
 			)}
-			{!isMobile && <ComputersCanvas />}
+			{isMobile === false && <ComputersCanvas />}
 			<div className="absolute xs:bottom-3 bottom-24 w-full flex justify-center items-center">
 				<a href="#about">
 					<div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
