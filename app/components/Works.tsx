@@ -48,10 +48,13 @@ const ProjectCard = ({
 						width={1000}
 						height={1000}
 						alt="project_image"
-						className="w-full h-full object-cover rounded-2xl"
+						className="w-full h-full object-cover rounded-2xl brightness-[.92] contrast-[1.03] saturate-[1.02]"
 					/>
 
-					<div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+					{/* Dark overlay to blend bright images with the theme */}
+					<div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none z-[1]" />
+
+					<div className="absolute inset-0 flex justify-end m-3 card-img_hover z-[2]">
 						{source_code_link && <Link
 							href={source_code_link}
 							target="_blank"

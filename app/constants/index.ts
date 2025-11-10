@@ -214,19 +214,37 @@ const projects :{
 	deploy_link: string;
 	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web"
 }[] = [
-	{
-		name: "SCS Cloud Platform",
-		description: "Cloud-native platform with HLS transcoding, static hosting, object storage and K8s-ready deployment.",
+		{
+		name: "3D Interactive Portfolio",
+		description: "Personal portfolio website built with Next.js 14, Three.js, Framer Motion, and Tailwind CSS. Features 3D animations, AI chatbot, and responsive design.",
 		tags: [
-			{ name: "nodejs", color: "blue-text-gradient" },
-			{ name: "docker", color: "green-text-gradient" },
-			{ name: "kubernetes", color: "orange-text-gradient" },
-			{ name: "aws", color: "pink-text-gradient" },
+			{ name: "nextjs", color: "blue-text-gradient" },
+			{ name: "threejs", color: "pink-text-gradient" },
+			{ name: "tailwind", color: "green-text-gradient" },
+			{ name: "typescript", color: "blue-text-gradient" },
 		],
-		image: "/projectimg/scsCloud.png",
-		source_code_link: "https://github.com/suryanshvermaa/scsCloud",
+		image: "/diagrams/HomePage.png",
+		source_code_link: "https://github.com/suryanshvermaa/3DPortfolio",
+		platform: "Vercel",
+		deploy_link: "https://suryanshverma.vercel.app",
+	},
+	{
+		name: "VM Launchpad",
+		description: "Ephemeral Kubernetes VM workspaces with TypeScript Express API, React/Vite frontend, WebSocket-ready ingress, and Prisma/PostgreSQL persistence.",
+		tags: [
+			{ name: "typescript", color: "blue-text-gradient" },
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "react", color: "blue-text-gradient" },
+			{ name: "vite", color: "pink-text-gradient" },
+			{ name: "prisma", color: "green-text-gradient" },
+			{ name: "postgresql", color: "green-text-gradient" },
+			{ name: "kubernetes", color: "orange-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+		],
+		image: "/projectimg/vm-app.png",
+		source_code_link: "https://github.com/suryanshvermaa/VM-Launchpad",
 		platform: "Web",
-		deploy_link: "https://github.com/suryanshvermaa/scsCloud",
+		deploy_link: "https://github.com/suryanshvermaa/VM-Launchpad",
 	},
 	{
 		name: "Hackslash Official Website",
@@ -240,6 +258,20 @@ const projects :{
 		source_code_link: "https://github.com/HackSlashNITP/hackslash-official-site",
 		platform: "Vercel",
 		deploy_link: "https://hackslashnitp.vercel.app",
+	},
+	{
+		name: "SCS Cloud Platform",
+		description: "Cloud-native platform with HLS transcoding, static hosting, object storage and K8s-ready deployment.",
+		tags: [
+			{ name: "nodejs", color: "blue-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+			{ name: "kubernetes", color: "orange-text-gradient" },
+			{ name: "aws", color: "pink-text-gradient" },
+		],
+		image: "/projectimg/scsCloud.png",
+		source_code_link: "https://github.com/suryanshvermaa/scsCloud",
+		platform: "Web",
+		deploy_link: "https://github.com/suryanshvermaa/scsCloud",
 	},
 	{
 		name: "Byteverse Hackathon",
@@ -268,36 +300,6 @@ const projects :{
 		source_code_link: "https://github.com/suryanshvermaa/Conference_website",
 		platform: "Vercel",
 		deploy_link: "https://icnari26.nasl.in",
-	},
-	{
-		name: "NEXT-GENERATION-ADAPTIVE-SYSTEM-LAB (NASL)",
-		description: "Full‑stack lab platform: static site + Express TS API with PostgreSQL, Prisma and S3 storage.",
-		tags: [
-			{ name: "express", color: "orange-text-gradient" },
-			{ name: "typescript", color: "blue-text-gradient" },
-			{ name: "postgresql", color: "green-text-gradient" },
-			{ name: "prisma", color: "pink-text-gradient" },
-			{ name: "s3", color: "blue-text-gradient" },
-			{ name: "docker", color: "green-text-gradient" },
-		],
-		image: "/projectimg/nasl-lab.png",
-		source_code_link: "https://github.com/suryanshvermaa/NEXT-GENERATION-ADAPTIVE-SYSTEM-LAB-NASL-",
-		platform: "Web",
-		deploy_link: "https://lab.nasl.in",
-	},
-	{
-		name: "3D Interactive Portfolio",
-		description: "Personal portfolio website built with Next.js 14, Three.js, Framer Motion, and Tailwind CSS. Features 3D animations, AI chatbot, and responsive design.",
-		tags: [
-			{ name: "nextjs", color: "blue-text-gradient" },
-			{ name: "threejs", color: "pink-text-gradient" },
-			{ name: "tailwind", color: "green-text-gradient" },
-			{ name: "typescript", color: "blue-text-gradient" },
-		],
-		image: "/diagrams/HomePage.png",
-		source_code_link: "https://github.com/suryanshvermaa/3DPortfolio",
-		platform: "Vercel",
-		deploy_link: "https://suryanshverma.vercel.app",
 	},
 	{
 		name: "Event Management App",
@@ -412,6 +414,22 @@ const projects :{
 		source_code_link: "https://github.com/suryanshvermaa/tools",
 		platform: "Web",
 		deploy_link: "https://github.com/suryanshvermaa/tools",
+	},
+	{
+		name: "NEXT-GENERATION-ADAPTIVE-SYSTEM-LAB (NASL)",
+		description: "Full‑stack lab platform: static site + Express TS API with PostgreSQL, Prisma and S3 storage.",
+		tags: [
+			{ name: "express", color: "orange-text-gradient" },
+			{ name: "typescript", color: "blue-text-gradient" },
+			{ name: "postgresql", color: "green-text-gradient" },
+			{ name: "prisma", color: "pink-text-gradient" },
+			{ name: "s3", color: "blue-text-gradient" },
+			{ name: "docker", color: "green-text-gradient" },
+		],
+		image: "/projectimg/nasl-lab.png",
+		source_code_link: "https://github.com/suryanshvermaa/NEXT-GENERATION-ADAPTIVE-SYSTEM-LAB-NASL-",
+		platform: "Web",
+		deploy_link: "https://lab.nasl.in",
 	},
 ];
 
