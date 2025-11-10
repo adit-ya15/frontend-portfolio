@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
+		// Allow external SVG widgets (github-readme-stats, leetcard, etc.)
+		// These widgets serve SVG; enabling dangerouslyAllowSVG prevents Next.js
+		// from blocking them during image optimization in dev/production.
+		dangerouslyAllowSVG: true,
 		remotePatterns: [
 			{
 				protocol: 'https',
