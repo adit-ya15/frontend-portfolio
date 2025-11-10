@@ -107,7 +107,7 @@ const GitHubActivity = () => {
 	return (
 		<>
 			<motion.div variants={textVariant()}>
-				<p className="sectionSubText text-center">What I'm Working On</p>
+				<p className="sectionSubText text-center">What I&apos;m Working On</p>
 				<h2 className="sectionHeadText text-center">GitHub Activity.</h2>
 			</motion.div>
 

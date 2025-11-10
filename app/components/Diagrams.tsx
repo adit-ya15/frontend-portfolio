@@ -3,6 +3,7 @@ import { SectionWrapper } from "@/app/components/HigherOrderComponents";
 import { textVariant, fadeIn } from "@/app/utils/motion";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
+import Image from "next/image";
 import Tilt from "react-parallax-tilt";
 
 interface Diagram {
@@ -74,16 +75,9 @@ const Diagrams = () => {
 							tiltMaxAngleX={10}
 							tiltMaxAngleY={10}
 						>
-							<div className="relative w-full h-[230px]">
-								<img
-									src={diagram.image}
-									alt={diagram.title}
-									className="w-full h-full object-cover rounded-2xl"
-									onError={(e) => {
-										// Fallback to placeholder if image not found
-										(e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='230' viewBox='0 0 400 230'%3E%3Crect fill='%23151030' width='400' height='230'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='18' fill='%23915EFF'%3EAdd diagram here%3C/text%3E%3C/svg%3E";
-									}}
-								/>
+								<div className="relative w-full h-[230px]">
+									<Image src={diagram.image} alt={diagram.title} fill className="object-cover rounded-2xl" />
+								</div>
 								<div className="absolute inset-0 flex justify-end m-3 card-img_hover">
 									<div className="bg-black-100 w-10 h-10 rounded-full flex justify-center items-center cursor-pointer">
 										<svg
@@ -101,8 +95,6 @@ const Diagrams = () => {
 										</svg>
 									</div>
 								</div>
-							</div>
-
 							<div className="mt-5">
 								<h3 className="text-white font-bold text-[24px]">{diagram.title}</h3>
 								<p className="mt-2 text-secondary text-[14px] leading-[22px]">
@@ -161,11 +153,7 @@ const Diagrams = () => {
 						</button>
 
 						<div className="max-h-[80vh] overflow-auto">
-							<img
-								src={selectedDiagram.image}
-								alt={selectedDiagram.title}
-								className="w-full h-auto rounded-lg"
-							/>
+							<Image src={selectedDiagram.image} alt={selectedDiagram.title} width={1200} height={800} className="w-full h-auto rounded-lg" />
 							<div className="mt-6">
 								<h2 className="text-white font-bold text-[28px]">
 									{selectedDiagram.title}
