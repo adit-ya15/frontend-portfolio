@@ -10,6 +10,7 @@ import {
 	StarsCanvas,
 	Stats,
 } from "./components";
+import Chatbot from "./components/Chatbot";
 
 export default function Home() {
 	return (
@@ -28,6 +29,7 @@ export default function Home() {
 				<Contact />
 				<StarsCanvas />
 			</div>
+			<Chatbot />
 		</div>
 	);
 }

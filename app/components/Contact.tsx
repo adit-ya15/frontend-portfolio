@@ -1,6 +1,5 @@
 "use client";
 import { slideIn } from "@/app/utils/motion";
-import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import { SectionWrapper } from "./HigherOrderComponents";
@@ -24,23 +23,26 @@ const Contact = () => {
 		setForm({ ...form, [name]: value });
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		setLoading(true);
-				emailjs
-					.send(
-						"service_91ssn8g",
-						"template_jjegxdr",
-						{
-							from_name: form.name,
-							to_name: "Suryansh Verma",
-							from_email: form.email,
-							to_email: "suryanshverma.dev.official@gmail.com",
-							message: form.message,
-						},
-						"VeFeVdEHL9F9_i6xp",
-					)
-			.then(() => {
+
+		try {
+			const response = await fetch("/api/mail", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name: form.name,
+					email: form.email,
+					message: form.message,
+				}),
+			});
+
+			const data = await response.json();
+
+			if (response.ok) {
 				setLoading(false);
 				alert(
 					"A humble thanks for reaching me out. I will respond to you as soon as possible.",
@@ -50,11 +52,14 @@ const Contact = () => {
 					email: "",
 					message: "",
 				});
-			})
-			.catch((error) => {
+			} else {
 				setLoading(false);
-				alert("Sorry!! Something went wrong!!");
-			});
+				alert(data.error || "Sorry!! Something went wrong!!");
+			}
+		} catch (error) {
+			setLoading(false);
+			alert("Sorry!! Something went wrong!!");
+		}
 	};
 
 	return (
