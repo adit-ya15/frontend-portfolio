@@ -261,9 +261,11 @@ const projects :{
 	},
 	{
 		name: "SCS Cloud Platform",
-		description: "Cloud-native platform with HLS transcoding, static hosting, object storage and K8s-ready deployment.",
+		description: "Cloud-native platform with HLS transcoding, static hosting, container service, object storage and K8s-ready deployment.",
 		tags: [
 			{ name: "nodejs", color: "blue-text-gradient" },
+			{ name: "go", color: "blue-text-gradient" },
+			{ name: "gRPC", color: "blue-text-gradient" },
 			{ name: "docker", color: "green-text-gradient" },
 			{ name: "kubernetes", color: "orange-text-gradient" },
 			{ name: "aws", color: "pink-text-gradient" },
