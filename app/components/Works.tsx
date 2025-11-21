@@ -73,7 +73,7 @@ const ProjectCard = ({
 							className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
 						>
 							<Image
-								src="/tech/github.webp"
+								src="/tech/github.svg"
 								width={24}
 								height={24}
 								alt="source-code"
@@ -86,7 +86,7 @@ const ProjectCard = ({
 							className="black-gradient w-10 h-10 ml-2 rounded-full flex justify-center items-center cursor-pointer"
 						>
 							<Image
-								src={platform === "Netlify" ? "/tech/netlify.webp" : platform === "Vercel" ? "/tech/vercel.svg" : platform === "Wordpress" ? "/tech/wordpress.webp" : platform === "Web" ? "/web.webp" : "/tech/figma.webp"}
+								src="/tech/external-link.svg"
 								width={24}
 								height={24}
 								alt="source code"
