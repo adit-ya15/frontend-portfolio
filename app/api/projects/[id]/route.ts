@@ -45,7 +45,6 @@ export async function PUT(
         sourceCodeLink: data.source_code_link,
         deployLink: data.deploy_link,
         platform: data.platform,
-        videoDemoLink: data.video_demo_link,
         order: data.order,
         isActive: data.isActive,
       },

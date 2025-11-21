@@ -519,7 +519,7 @@ export default function VideosManagement() {
         {videos.length === 0 && !showForm && (
           <div className="text-center py-12">
             <p className="text-secondary text-lg">
-              No videos yet. Click "Add Video" to create your first video demo.
+              No videos yet. Click &quot;Add Video&quot; to create your first video demo.
             </p>
           </div>
         )}
