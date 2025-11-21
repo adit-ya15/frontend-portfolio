@@ -2,48 +2,48 @@
 import { SectionWrapper } from "@/app/components/HigherOrderComponents";
 import { textVariant, fadeIn } from "@/app/utils/motion";
 import { motion } from "framer-motion";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Tilt from "react-parallax-tilt";
+import { DiagramCardSkeleton } from "./SkeletonLoader";
 
 interface Diagram {
 	id: string;
 	title: string;
 	description: string;
 	image: string;
-	project: string;
-	tags: string[];
 }
 
-const diagrams: Diagram[] = [
-	{
-		id: "1",
-		title: "Static Website Hosting Architecture",
-		description: "Cloud-native hosting service architecture with CDN integration for deploying React/Vite static applications. Features automated build pipelines and global content delivery.",
-		image: "/diagrams/hostingServiceArchitecture.png",
-		project: "SCS Cloud Platform",
-		tags: ["Hosting", "CDN", "Static Sites", "React"],
-	},
-	{
-		id: "2",
-		title: "SCS Cloud Platform Architecture",
-		description: "Complete microservices architecture for Suryansh Cloud Services (SCS) featuring HLS transcoding, static hosting, and S3-compatible object storage with Kubernetes orchestration.",
-		image: "/diagrams/scsCloud.png",
-		project: "SCS Cloud Platform",
-		tags: ["Microservices", "Kubernetes", "Cloud", "AWS"],
-	},
-	{
-		id: "3",
-		title: "HLS Video Transcoding Pipeline",
-		description: "Scalable video processing architecture converting 1080p source videos into adaptive HLS streams (1080p/720p/480p/360p) with master.m3u8 playlist generation for multi-platform playback.",
-		image: "/diagrams/trascodingServiceArchitecture.png",
-		project: "SCS Cloud Platform",
-		tags: ["HLS", "Video Processing", "Transcoding", "Streaming"],
-	},
-];
-
 const Diagrams = () => {
+	const [diagrams, setDiagrams] = useState<Diagram[]>([]);
 	const [selectedDiagram, setSelectedDiagram] = useState<Diagram | null>(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchDiagrams = async () => {
+			try {
+				const response = await fetch("/api/diagrams");
+				const data = await response.json();
+				setDiagrams(data);
+			} catch (error) {
+				console.error("Failed to fetch diagrams:", error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchDiagrams();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+				<DiagramCardSkeleton />
+				<DiagramCardSkeleton />
+				<DiagramCardSkeleton />
+			</div>
+		);
+	}
 
 	return (
 		<>
@@ -100,20 +100,6 @@ const Diagrams = () => {
 								<p className="mt-2 text-secondary text-[14px] leading-[22px]">
 									{diagram.description}
 								</p>
-								<p className="mt-2 text-[#915EFF] text-[12px] font-semibold">
-									Project: {diagram.project}
-								</p>
-							</div>
-
-							<div className="mt-4 flex flex-wrap gap-2">
-								{diagram.tags.map((tag) => (
-									<span
-										key={tag}
-										className="text-[12px] bg-black-200 text-[#915EFF] px-3 py-1 rounded-full"
-									>
-										#{tag}
-									</span>
-								))}
 							</div>
 						</Tilt>
 					</motion.div>
@@ -161,19 +147,6 @@ const Diagrams = () => {
 								<p className="mt-2 text-secondary text-[16px] leading-[26px]">
 									{selectedDiagram.description}
 								</p>
-								<p className="mt-3 text-[#915EFF] text-[14px] font-semibold">
-									Project: {selectedDiagram.project}
-								</p>
-								<div className="mt-4 flex flex-wrap gap-2">
-									{selectedDiagram.tags.map((tag) => (
-										<span
-											key={tag}
-											className="text-[14px] bg-black-200 text-[#915EFF] px-4 py-2 rounded-full"
-										>
-											#{tag}
-										</span>
-									))}
-								</div>
 							</div>
 						</div>
 					</motion.div>

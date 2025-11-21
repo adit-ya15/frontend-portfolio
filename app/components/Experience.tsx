@@ -1,18 +1,29 @@
 "use client";
 import { SectionWrapper } from "@/app/components/HigherOrderComponents";
-import { experiences } from "@/app/constants";
+import { fetchExperiences } from "@/lib/api";
 import { textVariant } from "@/app/utils/motion";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { ExperienceCardSkeleton } from "./SkeletonLoader";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 
+type Experience = {
+  id: string;
+  title: string;
+  company_name: string;
+  icon: string;
+  iconBg: string;
+  date: string;
+  points: string[];
+};
+
 type ExperienceCardProps = {
-  experience: (typeof experiences)[0];
+  experience: Experience;
 };
 
 const ExperienceCard = ({ experience }: ExperienceCardProps) => {
@@ -63,6 +74,34 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
 };
 
 const Experience = () => {
+  const [experiences, setExperiences] = useState<Experience[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadExperiences = async () => {
+      try {
+        const data = await fetchExperiences();
+        setExperiences(data);
+      } catch (error) {
+        console.error('Failed to load experiences:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadExperiences();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="mt-20 space-y-10">
+        <ExperienceCardSkeleton />
+        <ExperienceCardSkeleton />
+        <ExperienceCardSkeleton />
+        <ExperienceCardSkeleton />
+      </div>
+    );
+  }
+
   return (
     <>
       <motion.div variants={textVariant()}>

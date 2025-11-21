@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins as FontSans } from "next/font/google";
 import "@/app/styles/globals.css";
+import { Providers } from "./providers";
 
 const fontSans = FontSans({
 	subsets: ["latin"],
@@ -40,7 +41,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={fontSans.variable}>{children}</body>
+			<body className={fontSans.variable}>
+				<Providers>{children}</Providers>
+			</body>
 		</html>
 	);
 }

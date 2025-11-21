@@ -16,7 +16,7 @@ This portfolio showcases professional experience, projects, and technical expert
 
 ## 🏠 **Home Page Overview**
 
-![Home page diagram - Homepage preview](public/diagrams/HomePage.png)
+![Home page diagram - Homepage preview](https://suryanshvermaa.s3.ap-south-1.amazonaws.com/HomePage.png)
 
 *Figure: Overview of the homepage layout and major sections.*
 

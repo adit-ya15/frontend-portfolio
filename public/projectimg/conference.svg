@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#1d1836"/>
-  <g fill="none" stroke="#915EFF" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
-    <rect x="72" y="96" width="368" height="224" rx="20"/>
-    <path d="M120 152h272M120 200h272M120 248h200"/>
-    <path d="M192 368l-24 32h176l-24-32"/>
-  </g>
-  <text x="50%" y="468" font-size="44" text-anchor="middle" fill="#fff" font-family="Arial, Helvetica, sans-serif">CONFERENCE</text>
-</svg>

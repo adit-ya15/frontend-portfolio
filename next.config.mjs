@@ -30,6 +30,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'github-profile-summary-cards.vercel.app',
 			},
+			{
+				protocol: 'https',
+				hostname: 's3.tebi.io',
+			},
 		],
 	},
 };

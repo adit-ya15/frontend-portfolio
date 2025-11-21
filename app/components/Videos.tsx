@@ -1,24 +1,35 @@
 "use client";
 import { motion } from "framer-motion";
-import React from "react";
-import { projects } from "../constants";
+import React, { useState, useEffect } from "react";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
 
+type Video = {
+	id: string;
+	title: string;
+	description: string;
+	videoUrl: string;
+	thumbnail: string | null;
+	tags: { name: string }[];
+	order: number;
+};
+
 type VideoCardProps = {
 	index: number;
-	name: string;
+	title: string;
 	description: string;
-	video_demo_link: string;
-	image: string;
+	videoUrl: string;
+	thumbnail: string | null;
+	tags: { name: string }[];
 };
 
 const VideoCard = ({
 	index,
-	name,
+	title,
 	description,
-	video_demo_link,
-	image,
+	videoUrl,
+	thumbnail,
+	tags,
 }: VideoCardProps) => {
 	const [isPlaying, setIsPlaying] = React.useState(false);
 
@@ -37,11 +48,23 @@ const VideoCard = ({
 									className="relative w-full h-full cursor-pointer group"
 									onClick={() => setIsPlaying(true)}
 								>
-									<img
-										src={image}
-										alt={name}
-										className="w-full h-full object-cover"
-									/>
+									{thumbnail ? (
+										<img
+											src={thumbnail}
+											alt={title}
+											className="w-full h-full object-cover"
+										/>
+									) : (
+										<div className="w-full h-full bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center">
+											<svg
+												className="w-24 h-24 text-white/50"
+												fill="currentColor"
+												viewBox="0 0 20 20"
+											>
+												<path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
+											</svg>
+										</div>
+									)}
 									{/* Play button overlay */}
 									<div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
 										<div className="bg-white/90 rounded-full p-6 group-hover:scale-110 transition-transform">
@@ -63,7 +86,7 @@ const VideoCard = ({
 									autoPlay
 									className="w-full h-full object-cover"
 								>
-									<source src={video_demo_link} type="video/mp4" />
+									<source src={videoUrl} type="video/mp4" />
 									Your browser does not support the video tag.
 								</video>
 							)}
@@ -72,10 +95,22 @@ const VideoCard = ({
 
 					{/* Video Info */}
 					<div className="w-full lg:w-1/3 flex flex-col justify-center">
-						<h3 className="text-white font-bold text-[24px] mb-3">{name}</h3>
-						<p className="text-secondary text-[16px] leading-[24px]">
+						<h3 className="text-white font-bold text-[24px] mb-3">{title}</h3>
+						<p className="text-secondary text-[16px] leading-[24px] mb-4">
 							{description}
 						</p>
+						{tags && tags.length > 0 && (
+							<div className="flex flex-wrap gap-2">
+								{tags.map((tag, idx) => (
+									<span
+										key={idx}
+										className="px-3 py-1 bg-[#915EFF]/20 text-[#915EFF] rounded-full text-xs font-semibold border border-[#915EFF]/30"
+									>
+										#{tag.name}
+									</span>
+								))}
+							</div>
+						)}
 					</div>
 				</div>
 			</div>
@@ -84,10 +119,39 @@ const VideoCard = ({
 };
 
 const Videos = () => {
-	// Filter projects that have video_demo_link
-	const videoDemos = projects.filter((project) => project.video_demo_link);
+	const [videos, setVideos] = useState<Video[]>([]);
+	const [loading, setLoading] = useState(true);
 
-	if (videoDemos.length === 0) {
+	useEffect(() => {
+		const loadVideos = async () => {
+			try {
+				const response = await fetch('/api/videos');
+				if (response.ok) {
+					const data = await response.json();
+					setVideos(data);
+				} else {
+					console.error('Failed to fetch videos');
+					setVideos([]);
+				}
+			} catch (error) {
+				console.error('Failed to load videos:', error);
+				setVideos([]);
+			} finally {
+				setLoading(false);
+			}
+		};
+		loadVideos();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="min-h-[200px] flex items-center justify-center">
+				<div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#915EFF]"></div>
+			</div>
+		);
+	}
+
+	if (videos.length === 0) {
 		return null; // Don't render the section if there are no videos
 	}
 
@@ -109,14 +173,15 @@ const Videos = () => {
 			</div>
 
 			<div className="mt-14 sm:mt-20 flex flex-col gap-10">
-				{videoDemos.map((project, index) => (
+				{videos.map((video: Video, index: number) => (
 					<VideoCard
-						key={`video-${index}`}
+						key={`video-${video.id}`}
 						index={index}
-						name={project.name}
-						description={project.description}
-						video_demo_link={project.video_demo_link!}
-						image={project.image}
+						title={video.title}
+						description={video.description}
+						videoUrl={video.videoUrl}
+						thumbnail={video.thumbnail}
+						tags={video.tags}
 					/>
 				))}
 			</div>

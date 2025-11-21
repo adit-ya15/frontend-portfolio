@@ -1,9 +1,18 @@
 "use client";
-import { navLinks } from "@/app/constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ResumeButton from "./ResumeButton";
+
+const navLinks = [
+	{ id: "about", title: "About" },
+	{ id: "work", title: "Experience" },
+	{ id: "projects", title: "Projects" },
+	{ id: "videos", title: "Videos" },
+	{ id: "stats", title: "Stats" },
+	{ id: "diagrams", title: "Architecture" },
+	{ id: "contact", title: "Contact" },
+];
 
 const Navbar = () => {
 	const [active, setActive] = useState("");

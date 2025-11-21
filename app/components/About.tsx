@@ -4,8 +4,15 @@ import { SectionWrapper } from "./HigherOrderComponents";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Tilt } from "react-tilt";
-import { services } from "../constants";
+import { fetchServices } from "@/lib/api";
 import { fadeIn, textVariant } from "@/app/utils/motion";
+import { useState, useEffect } from "react";
+
+type Service = {
+	id: string;
+	title: string;
+	icon: string;
+};
 
 type ServiceCardProps = {
 	index: number;
@@ -43,6 +50,27 @@ const ServiceCard = ({ index, title, icon }: ServiceCardProps) => {
 };
 
 const About = () => {
+	const [services, setServices] = useState<Array<{ id: string; title: string; icon: string }>>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const loadServices = async () => {
+			try {
+				const data = await fetchServices();
+				setServices(data);
+			} catch (error) {
+				console.error('Failed to load services:', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		loadServices();
+	}, []);
+
+	if (loading) {
+		return <div className="text-center py-20">Loading...</div>;
+	}
+
 	return (
 		<>
 			<motion.div variants={textVariant()}>

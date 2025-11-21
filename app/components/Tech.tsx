@@ -1,10 +1,59 @@
 "use client";
-import { technologyGroups } from "@/app/constants";
+import { fetchTechnologies } from "@/lib/api";
 import { SectionWrapper } from "./HigherOrderComponents";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { TechBallSkeleton } from "./SkeletonLoader";
+
+type Technology = {
+	id: string;
+	name: string;
+	icon: string;
+};
+
+type TechnologyGroup = {
+	title: string;
+	items: Technology[];
+};
 
 const Tech = () => {
+	const [technologyGroups, setTechnologyGroups] = useState<TechnologyGroup[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const loadTechnologies = async () => {
+			try {
+				const data = await fetchTechnologies();
+				setTechnologyGroups(data);
+			} catch (error) {
+				console.error('Failed to load technologies:', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		loadTechnologies();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-6">
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+				<TechBallSkeleton />
+			</div>
+		);
+	}
+
 	return (
 		<div className="w-full flex flex-col gap-12">
 			{technologyGroups.map((group) => (

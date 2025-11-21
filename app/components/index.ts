@@ -11,6 +11,16 @@ import Contact from './Contact';
 import Stats from './Stats';
 import Diagrams from './Diagrams';
 import Videos from './Videos';
+import { 
+  SkeletonLoader, 
+  ProjectCardSkeleton, 
+  ExperienceCardSkeleton, 
+  TechBallSkeleton, 
+  TestimonialCardSkeleton, 
+  DiagramCardSkeleton,
+  AdminCardSkeleton,
+  AdminListSkeleton
+} from './SkeletonLoader';
 
 export {
   Hero,
@@ -28,5 +38,13 @@ export {
   EarthCanvas, 
   BallCanvas, 
   ComputersCanvas, 
-  StarsCanvas
+  StarsCanvas,
+  SkeletonLoader,
+  ProjectCardSkeleton,
+  ExperienceCardSkeleton,
+  TechBallSkeleton,
+  TestimonialCardSkeleton,
+  DiagramCardSkeleton,
+  AdminCardSkeleton,
+  AdminListSkeleton
 }

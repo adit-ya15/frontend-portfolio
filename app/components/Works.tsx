@@ -2,11 +2,23 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Tilt } from "react-tilt";
-import { projects } from "../constants";
+import { fetchProjects } from "@/lib/api";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
+import { ProjectCardSkeleton } from "./SkeletonLoader";
+
+type Project = {
+	id: string;
+	name: string;
+	description: string;
+	tags: { name: string; color: string }[];
+	image: string;
+	source_code_link?: string;
+	deploy_link: string;
+	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web";
+};
 
 type ProjectCardProps = {
 	index: number;
@@ -103,6 +115,42 @@ const ProjectCard = ({
 };
 
 const Works = () => {
+	const [projects, setProjects] = useState<Project[]>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const loadProjects = async () => {
+			try {
+				const data = await fetchProjects();
+				if (Array.isArray(data)) {
+					setProjects(data);
+				} else {
+					console.error('Invalid projects data:', data);
+					setProjects([]);
+				}
+			} catch (error) {
+				console.error('Failed to load projects:', error);
+				setProjects([]);
+			} finally {
+				setLoading(false);
+			}
+		};
+		loadProjects();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+				<ProjectCardSkeleton />
+				<ProjectCardSkeleton />
+				<ProjectCardSkeleton />
+				<ProjectCardSkeleton />
+				<ProjectCardSkeleton />
+				<ProjectCardSkeleton />
+			</div>
+		);
+	}
+
 	return (
 		<>
 			<motion.div variants={textVariant()}>
@@ -124,7 +172,7 @@ const Works = () => {
 			</div>
 
 			<div className="mt-14 sm:mt-20 flex flex-wrap gap-7 justify-center">
-				{projects.map((project, index) => (
+				{projects.map((project: Project, index: number) => (
 					<ProjectCard key={`project-${index}`} index={index} {...project} />
 				))}
 			</div>

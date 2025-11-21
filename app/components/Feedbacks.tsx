@@ -3,9 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { testimonials } from "../constants";
+import { useState, useEffect } from "react";
+import { fetchTestimonials } from "@/lib/api";
 import { fadeIn, textVariant } from "@/app/utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
+import { TestimonialCardSkeleton } from "./SkeletonLoader";
 
 type FeedbackCardProps = {
 	index: number;
@@ -52,6 +54,34 @@ const FeedbackCard = ({
 );
 
 const Feedbacks = () => {
+	const [testimonials, setTestimonials] = useState<Array<any>>([]);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const loadTestimonials = async () => {
+			try {
+				const data = await fetchTestimonials();
+				setTestimonials(data);
+			} catch (error) {
+				console.error('Failed to load testimonials:', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		loadTestimonials();
+	}, []);
+
+	if (loading) {
+		return (
+			<div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-7">
+				<TestimonialCardSkeleton />
+				<TestimonialCardSkeleton />
+				<TestimonialCardSkeleton />
+				<TestimonialCardSkeleton />
+			</div>
+		);
+	}
+
 	return (
 		<div className="mt-12 bg-black-100 rounded-[20px]">
 			<div className="padding bg-tertiary rounded-2xl min-h-[300px]">
