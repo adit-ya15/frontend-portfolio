@@ -19,7 +19,7 @@ type ProjectCardProps = {
 	image: string;
 	source_code_link?: string;
 	deploy_link: string;
-	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web"
+	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web";
 };
 
 const ProjectCard = ({
@@ -54,7 +54,7 @@ const ProjectCard = ({
 					{/* Dark overlay to blend bright images with the theme */}
 					<div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/45 via-black/10 to-transparent pointer-events-none z-[1]" />
 
-					<div className="absolute inset-0 flex justify-end m-3 card-img_hover z-[2]">
+						<div className="absolute inset-0 flex justify-end m-3 card-img_hover z-[2]">
 						{source_code_link && <Link
 							href={source_code_link}
 							target="_blank"
@@ -82,9 +82,7 @@ const ProjectCard = ({
 							/>
 						</Link>
 					</div>
-				</div>
-
-				<div className="mt-5">
+				</div>				<div className="mt-5">
 					<h3 className="text-white font-bold text-[24px]">{name}</h3>
 					<p className="mt-2 text-secondary text-[14px]">{description}</p>
 				</div>

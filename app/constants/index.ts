@@ -2,6 +2,7 @@ export const navLinks = [
 	{ id: "about", title: "About" },
 	{ id: "work", title: "Experience" },
 	{ id: "projects", title: "Projects" },
+	{ id: "videos", title: "Videos" },
 	{ id: "stats", title: "Stats" },
 	{ id: "diagrams", title: "Architecture" },
 	{ id: "contact", title: "Contact" },
@@ -212,7 +213,8 @@ const projects :{
 	image: string;
 	source_code_link?: string;
 	deploy_link: string;
-	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web"
+	platform: "Netlify" | "Vercel" | "Figma" | "Wordpress" | "Web";
+	video_demo_link?: string;
 }[] = [
 		{
 		name: "3D Interactive Portfolio",
@@ -274,6 +276,7 @@ const projects :{
 		source_code_link: "https://github.com/suryanshvermaa/scsCloud",
 		platform: "Web",
 		deploy_link: "https://github.com/suryanshvermaa/scsCloud",
+		video_demo_link: "https://suryanshvermaa.s3.ap-south-1.amazonaws.com/project-demo/scscloud.mp4",
 	},
 	{
 		name: "Byteverse Hackathon",

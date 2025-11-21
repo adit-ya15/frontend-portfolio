@@ -10,6 +10,7 @@ import {
 	StarsCanvas,
 	Stats,
 	Diagrams,
+	Videos,
 } from "./components";
 import Chatbot from "./components/Chatbot";
 import ShareButtons from "./components/ShareButtons";
@@ -25,6 +26,7 @@ export default function Home() {
 			<Experience />
 			<Tech />
 			<Works />
+			<Videos />
 			<Stats />
 			<Diagrams />
 			<Feedbacks />

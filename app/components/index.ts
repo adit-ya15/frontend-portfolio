@@ -10,6 +10,7 @@ import Feedbacks from './Feedbacks';
 import Contact from './Contact';
 import Stats from './Stats';
 import Diagrams from './Diagrams';
+import Videos from './Videos';
 
 export {
   Hero,
@@ -23,6 +24,7 @@ export {
   Contact,
   Stats,
   Diagrams,
+  Videos,
   EarthCanvas, 
   BallCanvas, 
   ComputersCanvas, 
