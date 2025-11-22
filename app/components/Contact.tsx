@@ -176,8 +176,9 @@ const Contact = () => {
 			</motion.div>
 			<motion.div
 				variants={slideIn("right", "tween", 0.2, 1)}
-				className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
+				className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px] hidden md:block"
 			>
+				{/* Only render 3D Earth on medium screens and up for better mobile performance */}
 				<EarthCanvas />
 			</motion.div>
 		</div>

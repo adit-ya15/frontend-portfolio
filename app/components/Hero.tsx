@@ -53,11 +53,7 @@ const Hero = () => {
 					</div>
 				</div>
 			</div>
-			{isMobile === true && (
-				<div className="absolute left-0 right-0 top-[280px] xs:top-[320px] h-[400px] xs:h-[450px]">
-					<ComputersCanvas />
-				</div>
-			)}
+			{/* Only render 3D on medium screens and up for better mobile performance */}
 			{isMobile === false && <ComputersCanvas />}
 			<div className="absolute xs:bottom-3 bottom-24 w-full flex justify-center items-center">
 				<a href="#about">
