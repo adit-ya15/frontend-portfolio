@@ -106,12 +106,6 @@ export default function AdminLayout({
               Diagrams
             </Link>
             <Link
-              href="/admin/stats"
-              className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors"
-            >
-              Stats
-            </Link>
-            <Link
               href="/admin/navigation"
               className="block px-4 py-2 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors"
             >

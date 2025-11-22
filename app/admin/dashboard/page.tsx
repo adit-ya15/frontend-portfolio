@@ -93,13 +93,6 @@ export default function AdminDashboard() {
       color: "from-indigo-500 to-indigo-600",
     },
     {
-      title: "Stats",
-      description: "Manage dashboard statistics",
-      href: "/admin/stats",
-      icon: "📈",
-      color: "from-pink-500 to-pink-600",
-    },
-    {
       title: "Navigation",
       description: "Manage navigation menu links",
       href: "/admin/navlinks",

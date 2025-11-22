@@ -73,7 +73,8 @@ const ExperienceCard = ({ experience }: ExperienceCardProps) => {
   );
 };
 
-const Experience = () => {
+
+const Experience = ({ isLoaded }: { isLoaded: boolean }) => {
   const [experiences, setExperiences] = useState<Experience[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -104,7 +105,7 @@ const Experience = () => {
 
   return (
     <>
-      <motion.div variants={textVariant()}>
+      <motion.div variants={isLoaded ? textVariant() : undefined} initial={!isLoaded ? false : undefined} animate={isLoaded ? "show" : "hidden"}>
         <p className="sectionSubText text-center">My Journey</p>
         <h2 className="sectionHeadText text-center">Education & Experience.</h2>
       </motion.div>

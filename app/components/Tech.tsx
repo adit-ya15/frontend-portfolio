@@ -17,7 +17,8 @@ type TechnologyGroup = {
 	items: Technology[];
 };
 
-const Tech = () => {
+
+const Tech = ({ isLoaded }: { isLoaded: boolean }) => {
 	const [technologyGroups, setTechnologyGroups] = useState<TechnologyGroup[]>([]);
 	const [loading, setLoading] = useState(true);
 
@@ -65,6 +66,8 @@ const Tech = () => {
 								key={tech.name}
 								whileHover={{ scale: 1.05, translateY: -2 }}
 								whileTap={{ scale: 0.98 }}
+								initial={!isLoaded ? false : undefined}
+								animate={isLoaded ? "show" : "hidden"}
 								className="group bg-tertiary/60 backdrop-blur-sm border border-white/10 rounded-xl p-4 flex flex-col items-center justify-center shadow-md hover:shadow-lg transition-shadow"
 							>
 								<div className="relative w-14 h-14 flex items-center justify-center">
