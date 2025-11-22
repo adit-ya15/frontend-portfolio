@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
@@ -59,15 +60,18 @@ const VideoCard = ({
 									onClick={() => setIsPlaying(true)}
 								>
 									{thumbnail && !thumbnailError ? (
-										<img
+										<Image
 											src={thumbnail}
 											alt={title}
+											fill
 											className="w-full h-full object-cover"
-											onError={(e) => {
+											onError={() => {
 												console.error('Failed to load thumbnail:', thumbnail);
 												setThumbnailError(true);
 											}}
 											crossOrigin="anonymous"
+											sizes="(max-width: 768px) 100vw, 50vw"
+											priority={index === 0}
 										/>
 									) : (
 										<div className="w-full h-full bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center">
