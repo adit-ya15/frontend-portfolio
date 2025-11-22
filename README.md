@@ -32,7 +32,7 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 - ✅ Video demos, diagrams, testimonials, stats
 - ✅ Dynamic navigation & resume management
 - ✅ Mobile-optimized (3D disabled on small screens)
-- ✅ Dual email system (Nodemailer + EmailJS)
+- ✅ Email system (Nodemailer)
 
 ---
 
