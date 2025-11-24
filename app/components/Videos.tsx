@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
+// Use plain <img> for thumbnails to avoid Next.js image optimization issues with signed URLs
 import React, { useState, useEffect, useRef } from "react";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
@@ -75,19 +75,15 @@ const VideoCard = ({
 									onClick={() => setIsPlaying(true)}
 								>
 									{thumbnail && !thumbnailError ? (
-										<Image
+										<img
 											src={thumbnail}
 											alt={title}
-											fill
-											className="w-full h-full object-cover"
+											style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, borderRadius: 'inherit' }}
 											onError={() => {
 												console.error('Failed to load thumbnail:', thumbnail);
 												setThumbnailError(true);
 											}}
-											crossOrigin="anonymous"
-											sizes="(max-width: 768px) 100vw, 50vw"
-											priority={index === 0}
-											unoptimized
+											loading={index === 0 ? 'eager' : 'lazy'}
 										/>
 									) : (
 										<div className="w-full h-full bg-gradient-to-br from-purple-900 to-blue-900 flex items-center justify-center">
