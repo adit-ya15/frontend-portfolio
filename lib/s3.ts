@@ -1,14 +1,25 @@
 import { S3Client, PutObjectCommand, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
+// Normalise endpoint and choose region compatible with S3-compatible providers
+const RAW_ENDPOINT = process.env.AWS_S3_ENDPOINT?.trim();
+const NORMALISED_ENDPOINT = RAW_ENDPOINT
+  ? RAW_ENDPOINT.replace(/\/$/, "") // remove single trailing slash
+  : undefined;
+
+// If using a custom S3-compatible endpoint (e.g. Tebi, R2), prefer "auto" region
+const USING_CUSTOM_ENDPOINT = Boolean(NORMALISED_ENDPOINT) && !NORMALISED_ENDPOINT!.includes("amazonaws.com");
+const EFFECTIVE_REGION = USING_CUSTOM_ENDPOINT ? (process.env.AWS_REGION || "auto") : process.env.AWS_REGION!;
+
 const s3Client = new S3Client({
-  region: process.env.AWS_REGION!,
-  endpoint: process.env.AWS_S3_ENDPOINT, // Tebi S3 endpoint
+  region: EFFECTIVE_REGION || "auto",
+  endpoint: NORMALISED_ENDPOINT, // Tebi / custom S3 endpoint
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY!,
   },
-  forcePathStyle: true, // Required for Tebi.io and other S3-compatible services
+  // Path-style is broadly compatible across non-AWS providers
+  forcePathStyle: true,
 });
 
 const BUCKET_NAME = process.env.AWS_BUCKET_NAME!;
@@ -28,9 +39,9 @@ export async function uploadToS3(
   await s3Client.send(command);
   
   // Return the correct URL based on endpoint
-  if (process.env.AWS_S3_ENDPOINT) {
+  if (NORMALISED_ENDPOINT) {
     // For Tebi.io or custom S3 endpoints
-    return `${process.env.AWS_S3_ENDPOINT}/${BUCKET_NAME}/${key}`;
+    return `${NORMALISED_ENDPOINT}/${BUCKET_NAME}/${key}`;
   }
   
   // For standard AWS S3
@@ -49,9 +60,9 @@ export async function getSignedS3Url(key: string, expiresIn: number = 3600): Pro
 
 export function getPublicS3Url(key: string): string {
   // Return the correct URL based on endpoint
-  if (process.env.AWS_S3_ENDPOINT) {
+  if (NORMALISED_ENDPOINT) {
     // For Tebi.io or custom S3 endpoints
-    return `${process.env.AWS_S3_ENDPOINT}/${BUCKET_NAME}/${key}`;
+    return `${NORMALISED_ENDPOINT}/${BUCKET_NAME}/${key}`;
   }
   
   // For standard AWS S3
@@ -63,7 +74,8 @@ export function extractS3Key(url: string): string | null {
   if (!url) return null;
   
   // Check if it's an S3 URL
-  const s3Pattern = new RegExp(`${BUCKET_NAME}/(.+)$`);
+  // Capture path up to any query string
+  const s3Pattern = new RegExp(`${BUCKET_NAME}/([^?]+)`);
   const match = url.match(s3Pattern);
   
   return match ? match[1] : null;

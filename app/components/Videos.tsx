@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-// Use plain <img> for thumbnails to avoid Next.js image optimization issues with signed URLs
 import React, { useState, useEffect, useRef } from "react";
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./HigherOrderComponents";
@@ -50,7 +49,7 @@ const VideoCard = ({
 		}
 	}, [isPlaying]);
 
-	React.useEffect(() => {
+	useEffect(() => {
 		if (thumbnail) {
 			console.log('Thumbnail URL:', thumbnail);
 		}
@@ -79,6 +78,8 @@ const VideoCard = ({
 											src={thumbnail}
 											alt={title}
 											style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0, borderRadius: 'inherit' }}
+											crossOrigin="anonymous"
+											referrerPolicy="no-referrer"
 											onError={() => {
 												console.error('Failed to load thumbnail:', thumbnail);
 												setThumbnailError(true);
@@ -116,6 +117,8 @@ const VideoCard = ({
 									ref={videoRef}
 									controls
 									playsInline
+									crossOrigin="anonymous"
+									preload="metadata"
 									className="w-full h-full object-cover"
 									onError={(e) => {
 										console.error('Failed to load video:', videoUrl);
@@ -160,7 +163,7 @@ const Videos = () => {
 	useEffect(() => {
 		const loadVideos = async () => {
 			try {
-				const response = await fetch('/api/videos');
+				const response = await fetch(`/api/videos?ts=${Date.now()}` , { cache: 'no-store' });
 				if (response.ok) {
 					const data = await response.json();
 					setVideos(data);
