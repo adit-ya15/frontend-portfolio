@@ -9,11 +9,9 @@
     "lint": "next lint",
     "postinstall": "prisma generate",
     "seed": "npx ts-node scripts/seed-data.ts",
-    "createAdmin":"npx ts-node scripts/create-admin.ts"
+    "createAdmin": "npx ts-node scripts/create-admin.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.937.0",
-    "@aws-sdk/s3-request-presigner": "^3.937.0",
     "@emailjs/browser": "^4.3.3",
     "@hookform/resolvers": "^5.2.2",
     "@jdion/tilt-react": "^1.0.0",
@@ -24,6 +22,7 @@
     "@upstash/redis": "^1.35.6",
     "bcryptjs": "^3.0.3",
     "caniuse-lite": "^1.0.30001756",
+    "cloudinary": "^2.8.0",
     "emailjs": "^4.0.3",
     "framer-motion": "^11.1.9",
     "groq-sdk": "^0.34.0",

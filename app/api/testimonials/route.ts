@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { convertToSignedUrl } from "@/lib/s3";
+import { convertToSignedUrl } from "@/lib/cloudinary";
 
 export async function GET() {
   try {

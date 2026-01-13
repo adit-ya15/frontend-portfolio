@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { convertToSignedUrl } from "@/lib/s3";
+import { convertToSignedUrl } from "@/lib/cloudinary";
 
 export const dynamic = 'force-dynamic';
 

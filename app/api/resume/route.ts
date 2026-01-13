@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { convertToSignedUrl } from "@/lib/s3";
+import { convertToSignedUrl } from "@/lib/cloudinary";
 import { prisma } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";

@@ -50,6 +50,10 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: '**.s3.*.amazonaws.com', // Allow regional AWS S3 buckets
 			},
+			{
+				protocol: 'https',
+				hostname: 'res.cloudinary.com', // Allow Cloudinary images
+			},
 		],
 	},
 };

@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { uploadToS3 } from "@/lib/s3";
+import { uploadToCloudinary } from "@/lib/cloudinary";
 
 export async function POST(req: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    
+
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -28,19 +28,20 @@ export async function POST(req: NextRequest) {
     const sanitizedFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, "_");
     const key = `${folder}/${timestamp}_${sanitizedFileName}`;
 
-    // Upload to S3
-    const s3Url = await uploadToS3(buffer, key, file.type);
+    // Upload to Cloudinary
+    const result = await uploadToCloudinary(buffer, folder);
 
-    return NextResponse.json({ 
-      url: s3Url,
-      key: key,
-      message: "File uploaded successfully" 
+    return NextResponse.json({
+      url: result.url,
+      // Cloudinary doesn't use keys in the same way, but we can return publicId if needed
+      key: result.publicId,
+      message: "File uploaded successfully"
     });
   } catch (error: any) {
     console.error("Upload error:", error);
-    return NextResponse.json({ 
+    return NextResponse.json({
       error: "Failed to upload file",
-      details: error.message 
+      details: error.message
     }, { status: 500 });
   }
 }

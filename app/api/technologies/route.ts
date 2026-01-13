@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { convertToSignedUrl } from "@/lib/s3";
+import { convertToSignedUrl } from "@/lib/cloudinary";
 
 export async function GET(req: NextRequest) {
   try {
@@ -29,7 +29,7 @@ export async function GET(req: NextRequest) {
 
     // Format for grouped list (default)
     const grouped: Record<string, { id: string; name: string; icon: string }[]> = {};
-    
+
     for (const tech of technologies) {
       if (!grouped[tech.group]) {
         grouped[tech.group] = [];
@@ -54,14 +54,14 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const data = await req.json();
-    
+
     const technology = await prisma.technology.create({
       data: {
         name: data.name,
@@ -79,14 +79,14 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const data = await req.json();
-    
+
     const updateData: any = {
       name: data.name,
       icon: data.icon,
@@ -97,7 +97,7 @@ export async function PUT(req: NextRequest) {
     if (data.isActive !== undefined) {
       updateData.isActive = data.isActive;
     }
-    
+
     const technology = await prisma.technology.update({
       where: { id: data.id },
       data: updateData,
@@ -111,7 +111,7 @@ export async function PUT(req: NextRequest) {
 
 export async function DELETE(req: NextRequest) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
