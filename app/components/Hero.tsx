@@ -44,10 +44,10 @@ const Hero = () => {
 						/>
 						<div>
 							<h1 className="heroHeadText text-white leading-tight">
-								Hi, I&apos;m <span className="text-[#915EFF] ">Suryansh Verma</span>
+								Hi, I&apos;m <span className="text-[#915EFF] ">Aditya Verma</span>
 							</h1>
 							<p className="heroSubText mt-2">
-								Full-Stack Developer · Cloud & DevOps Engineer
+								React Frontend Developer · Cloud & DevOps Engineer
 							</p>
 						</div>
 					</div>

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
-import { convertToSignedUrl } from "@/lib/cloudinary";
+import { convertToSignedUrl, deleteFromCloudinary, extractPublicIdFromUrl } from "@/lib/cloudinary";
 
 const prisma = new PrismaClient();
 
@@ -70,6 +70,15 @@ export async function PUT(req: NextRequest) {
 
     const { id, title, description, image, order, isActive } = await req.json();
 
+    // Get existing diagram for image comparison
+    const existingDiagram = await prisma.diagram.findUnique({
+      where: { id },
+    });
+
+    if (!existingDiagram) {
+      return NextResponse.json({ error: "Diagram not found" }, { status: 404 });
+    }
+
     const diagram = await prisma.diagram.update({
       where: { id },
       data: {
@@ -80,6 +89,14 @@ export async function PUT(req: NextRequest) {
         isActive,
       },
     });
+
+    // Delete old image if it changed
+    if (image && existingDiagram.image && image !== existingDiagram.image) {
+      const publicId = extractPublicIdFromUrl(existingDiagram.image);
+      if (publicId) {
+        await deleteFromCloudinary(publicId);
+      }
+    }
 
     return NextResponse.json(diagram);
   } catch (error) {
@@ -100,9 +117,17 @@ export async function DELETE(req: NextRequest) {
 
     const { id } = await req.json();
 
-    await prisma.diagram.delete({
+    const diagram = await prisma.diagram.delete({
       where: { id },
     });
+
+    // Delete image from Cloudinary
+    if (diagram.image) {
+      const publicId = extractPublicIdFromUrl(diagram.image);
+      if (publicId) {
+        await deleteFromCloudinary(publicId);
+      }
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { convertToSignedUrl } from "@/lib/cloudinary";
+import { convertToSignedUrl, deleteFromCloudinary, extractPublicIdFromUrl } from "@/lib/cloudinary";
 
 export async function GET(req: NextRequest) {
   try {
@@ -98,10 +98,27 @@ export async function PUT(req: NextRequest) {
       updateData.isActive = data.isActive;
     }
 
+    // Verify ownership/existence and get old image URL
+    const existingTechnology = await prisma.technology.findUnique({
+      where: { id: data.id },
+    });
+
+    if (!existingTechnology) {
+      return NextResponse.json({ error: "Technology not found" }, { status: 404 });
+    }
+
     const technology = await prisma.technology.update({
       where: { id: data.id },
       data: updateData,
     });
+
+    // If icon was updated, delete the old one
+    if (data.icon && existingTechnology.icon && data.icon !== existingTechnology.icon) {
+      const publicId = extractPublicIdFromUrl(existingTechnology.icon);
+      if (publicId) {
+        await deleteFromCloudinary(publicId);
+      }
+    }
 
     return NextResponse.json(technology);
   } catch (error) {
@@ -124,9 +141,17 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "ID required" }, { status: 400 });
     }
 
-    await prisma.technology.delete({
+    const technology = await prisma.technology.delete({
       where: { id },
     });
+
+    // Delete image from Cloudinary
+    if (technology.icon) {
+      const publicId = extractPublicIdFromUrl(technology.icon);
+      if (publicId) {
+        await deleteFromCloudinary(publicId);
+      }
+    }
 
     return NextResponse.json({ message: "Technology deleted successfully" });
   } catch (error) {

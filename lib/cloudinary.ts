@@ -65,4 +65,52 @@ export async function convertToSignedUrl(url: string, expiresIn: number = 3600):
     return url;
 }
 
+// Helper to extract public ID from Cloudinary URL
+export function extractPublicIdFromUrl(url: string): string | null {
+    if (!url || !url.includes('cloudinary.com')) return null;
+
+    // Cloudinary URLs format: .../upload/v1234567890/folder/filename.ext
+    // We need 'folder/filename' (without extension)
+
+    try {
+        const parts = url.split('/upload/');
+        if (parts.length < 2) return null;
+
+        const pathAfterUpload = parts[1];
+        // Skip version if present (starts with v and numbers)
+        const pathParts = pathAfterUpload.split('/');
+
+        // Find where the actual path starts (after version)
+        let startIndex = 0;
+        if (pathParts[0].startsWith('v') && !isNaN(Number(pathParts[0].substring(1)))) {
+            startIndex = 1;
+        }
+
+        const publicIdWithExt = pathParts.slice(startIndex).join('/');
+        // Remove file extension
+        const publicId = publicIdWithExt.substring(0, publicIdWithExt.lastIndexOf('.'));
+
+        return publicId;
+    } catch (error) {
+        console.error('Error extracting public ID:', error);
+        return null;
+    }
+}
+
+export async function deleteFromCloudinary(publicId: string): Promise<boolean> {
+    if (!publicId) return false;
+
+    return new Promise((resolve) => {
+        cloudinary.uploader.destroy(publicId, (error, result) => {
+            if (error) {
+                console.error('Cloudinary delete error:', error);
+                resolve(false);
+                return;
+            }
+            console.log('Cloudinary delete result:', result);
+            resolve(result.result === 'ok');
+        });
+    });
+}
+
 export { cloudinary };

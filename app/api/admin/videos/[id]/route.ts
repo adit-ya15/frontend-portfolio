@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { deleteFromCloudinary, extractPublicIdFromUrl } from "@/lib/cloudinary";
 
 export async function PATCH(
   req: NextRequest,
@@ -21,6 +22,15 @@ export async function PATCH(
       .map((tag: string) => ({ name: tag.trim() }))
       .filter((tag: { name: string }) => tag.name);
 
+    // Verify ownership/existence
+    const existingVideo = await prisma.video.findUnique({
+      where: { id: params.id },
+    });
+
+    if (!existingVideo) {
+      return NextResponse.json({ error: "Video not found" }, { status: 404 });
+    }
+
     const video = await prisma.video.update({
       where: { id: params.id },
       data: {
@@ -32,6 +42,18 @@ export async function PATCH(
         order: data.order,
       },
     });
+
+    // Delete old video if changed
+    if (data.videoUrl && existingVideo.videoUrl && data.videoUrl !== existingVideo.videoUrl) {
+      const publicId = extractPublicIdFromUrl(existingVideo.videoUrl);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
+
+    // Delete old thumbnail if changed
+    if (data.thumbnail && existingVideo.thumbnail && data.thumbnail !== existingVideo.thumbnail) {
+      const publicId = extractPublicIdFromUrl(existingVideo.thumbnail);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
 
     return NextResponse.json(video);
   } catch (error) {
@@ -53,9 +75,21 @@ export async function DELETE(
   }
 
   try {
-    await prisma.video.delete({
+    const video = await prisma.video.delete({
       where: { id: params.id },
     });
+
+    // Delete video from Cloudinary
+    if (video.videoUrl) {
+      const publicId = extractPublicIdFromUrl(video.videoUrl);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
+
+    // Delete thumbnail from Cloudinary
+    if (video.thumbnail) {
+      const publicId = extractPublicIdFromUrl(video.thumbnail);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
 
     return NextResponse.json({ message: "Video deleted successfully" });
   } catch (error) {

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { deleteFromCloudinary, extractPublicIdFromUrl } from "@/lib/cloudinary";
 
 export async function GET(
   req: NextRequest,
@@ -27,14 +28,23 @@ export async function PUT(
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
     const data = await req.json();
-    
+
+    // Verify ownership/existence
+    const existingProject = await prisma.project.findUnique({
+      where: { id: params.id },
+    });
+
+    if (!existingProject) {
+      return NextResponse.json({ error: "Project not found" }, { status: 404 });
+    }
+
     const project = await prisma.project.update({
       where: { id: params.id },
       data: {
@@ -50,6 +60,12 @@ export async function PUT(
       },
     });
 
+    // Delete old image from Cloudinary if changed
+    if (data.image && existingProject.image && data.image !== existingProject.image) {
+      const publicId = extractPublicIdFromUrl(existingProject.image);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
+
     return NextResponse.json(project);
   } catch (error) {
     return NextResponse.json({ error: "Failed to update project" }, { status: 500 });
@@ -61,15 +77,21 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authOptions);
-  
+
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    await prisma.project.delete({
+    const project = await prisma.project.delete({
       where: { id: params.id },
     });
+
+    // Delete image from Cloudinary
+    if (project.image) {
+      const publicId = extractPublicIdFromUrl(project.image);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
 
     return NextResponse.json({ message: "Project deleted successfully" });
   } catch (error) {

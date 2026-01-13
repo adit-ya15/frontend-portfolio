@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { convertToSignedUrl } from "@/lib/cloudinary";
+import { convertToSignedUrl, deleteFromCloudinary, extractPublicIdFromUrl } from "@/lib/cloudinary";
 
 export async function GET() {
   try {
@@ -13,7 +13,7 @@ export async function GET() {
 
     const formattedExperiences = await Promise.all(experiences.map(async (exp) => ({
       title: exp.title,
-      company_name: exp.companyName,
+      companyName: exp.companyName,
       icon: await convertToSignedUrl(exp.icon),
       iconBg: exp.iconBg,
       date: exp.date,
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
     const experience = await prisma.experience.create({
       data: {
         title: data.title,
-        companyName: data.company_name,
+        companyName: data.companyName,
         icon: data.icon,
         iconBg: data.iconBg,
         date: data.date,
@@ -64,11 +64,20 @@ export async function PUT(req: NextRequest) {
   try {
     const data = await req.json();
 
+    // Verify ownership/existence
+    const existingExperience = await prisma.experience.findUnique({
+      where: { id: data.id },
+    });
+
+    if (!existingExperience) {
+      return NextResponse.json({ error: "Experience not found" }, { status: 404 });
+    }
+
     const experience = await prisma.experience.update({
       where: { id: data.id },
       data: {
         title: data.title,
-        companyName: data.company_name,
+        companyName: data.companyName,
         icon: data.icon,
         iconBg: data.iconBg,
         date: data.date,
@@ -77,6 +86,12 @@ export async function PUT(req: NextRequest) {
         isActive: data.isActive,
       },
     });
+
+    // Delete old icon if changed
+    if (data.icon && existingExperience.icon && data.icon !== existingExperience.icon) {
+      const publicId = extractPublicIdFromUrl(existingExperience.icon);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
 
     return NextResponse.json(experience);
   } catch (error) {
@@ -99,9 +114,15 @@ export async function DELETE(req: NextRequest) {
       return NextResponse.json({ error: "ID required" }, { status: 400 });
     }
 
-    await prisma.experience.delete({
+    const experience = await prisma.experience.delete({
       where: { id },
     });
+
+    // Delete icon from Cloudinary
+    if (experience.icon) {
+      const publicId = extractPublicIdFromUrl(experience.icon);
+      if (publicId) await deleteFromCloudinary(publicId);
+    }
 
     return NextResponse.json({ message: "Experience deleted successfully" });
   } catch (error) {
