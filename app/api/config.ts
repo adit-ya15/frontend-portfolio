@@ -5,11 +5,11 @@ const redis = new Redis({
   token: process.env.UPSTASH_TOKEN || '',
 })
 
-const transporter=await nodemailer.createTransport({
-  service:'gmail',
-  auth:{
-   user:process.env.MY_EMAIL,
-   pass:process.env.MY_PASSWORD
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.MY_EMAIL,
+    pass: process.env.MY_PASSWORD
   }
 });
 

@@ -26,7 +26,7 @@ const FeedbackCard = ({
 }: FeedbackCardProps) => (
 	<motion.div
 		variants={fadeIn("", "spring", index * 0.5, 0.75)}
-		className="bg-black-200 p-10 rounded-3xl xs:w-[320px] w-full"
+		className="bg-[#090325] p-10 rounded-3xl xs:w-[320px] w-full"
 	>
 		<p className="text-white font-black text-[48px]">&quot;</p>
 
@@ -35,8 +35,7 @@ const FeedbackCard = ({
 			<div className="mt-7 flex justify-between items-center gap-1">
 				<div className="flex-1 flex flex-col">
 					<p className="text-white font-medium text-[16px]">
-						<span className="blue-text-gradient">@</span>
-						{name}
+						<span className="white-text-gradient">@{name}</span>
 					</p>
 				</div>
 				<Link href={link}>
@@ -54,21 +53,42 @@ const FeedbackCard = ({
 );
 
 const Feedbacks = () => {
-	const [testimonials, setTestimonials] = useState<Array<any>>([]);
-	const [loading, setLoading] = useState(true);
+	const testimonials = [
+		{
+			id: "1",
+			testimonial:
+				"Connect with me professionally on LinkedIn for experience, achievements & collaboration opportunities.",
+			name: "Aditya Verma",
+			designation: "",
+			company: "",
+			image: "/socialmedia/linkedin.svg",
+			link: "https://www.linkedin.com/in/aditya-verma-a809b4344/",
+		},
+		{
+			id: "2",
+			testimonial:
+				"Explore my portfolio showcasing projects, cloud-native tooling & experiments.",
+			name: "Aditya Verma",
+			designation: "",
+			company: "",
+			image: "/logo.png",
+			link: "https://adityaverma.tech/",
+		},
+		{
+			id: "3",
+			testimonial:
+				"Dive into my open-source contributions, NPM packages & backend engineering repos on GitHub.",
+			name: "Aditya Verma",
+			designation: "",
+			company: "",
+			image: "/tech/github.svg",
+			link: "https://github.com/adit-ya15",
+		},
+	];
+	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
-		const loadTestimonials = async () => {
-			try {
-				const data = await fetchTestimonials();
-				setTestimonials(data);
-			} catch (error) {
-				console.error('Failed to load testimonials:', error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		loadTestimonials();
+		// Mock loading for a smooth transition if needed, or remove effect entirely
 	}, []);
 
 	if (loading) {

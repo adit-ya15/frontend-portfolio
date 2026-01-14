@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { AdminListSkeleton } from "@/app/components/SkeletonLoader";
 
+
 interface Testimonial {
   id: string;
   name: string;
+  testimonial: string;
   designation: string;
   company: string;
   image: string;
@@ -26,6 +28,7 @@ export default function AdminTestimonials() {
 
   const [formData, setFormData] = useState({
     name: "",
+    testimonial: "",
     designation: "",
     company: "",
     image: "",
@@ -54,24 +57,24 @@ export default function AdminTestimonials() {
 
     try {
       if (editingTestimonial) {
-        const res = await fetch(`/api/testimonials`, {
+        const res = await fetch(`/api/admin/testimonials`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ id: editingTestimonial.id, ...formData }),
         });
-        
+
         if (res.ok) {
           alert("Testimonial updated successfully!");
           fetchTestimonials();
           resetForm();
         }
       } else {
-        const res = await fetch("/api/testimonials", {
+        const res = await fetch("/api/admin/testimonials", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(formData),
         });
-        
+
         if (res.ok) {
           alert("Testimonial created successfully!");
           fetchTestimonials();
@@ -88,6 +91,7 @@ export default function AdminTestimonials() {
     setEditingTestimonial(testimonial);
     setFormData({
       name: testimonial.name,
+      testimonial: testimonial.testimonial || "",
       designation: testimonial.designation,
       company: testimonial.company,
       image: testimonial.image,
@@ -101,7 +105,7 @@ export default function AdminTestimonials() {
     if (!confirm("Are you sure you want to delete this testimonial?")) return;
 
     try {
-      const res = await fetch("/api/testimonials", {
+      const res = await fetch("/api/admin/testimonials", {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
@@ -146,7 +150,7 @@ export default function AdminTestimonials() {
 
   const toggleActive = async (testimonial: Testimonial) => {
     try {
-      const res = await fetch("/api/testimonials", {
+      const res = await fetch("/api/admin/testimonials", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -166,6 +170,7 @@ export default function AdminTestimonials() {
   const resetForm = () => {
     setFormData({
       name: "",
+      testimonial: "",
       designation: "",
       company: "",
       image: "",
@@ -234,7 +239,7 @@ export default function AdminTestimonials() {
               <span className="w-2 h-8 bg-[#915EFF] rounded-full"></span>
               {editingTestimonial ? "Edit Testimonial" : "New Testimonial"}
             </h2>
-            
+
             <form onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
@@ -350,56 +355,54 @@ export default function AdminTestimonials() {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-            className={`bg-gray-800 p-6 rounded-lg ${
-              !testimonial.isActive ? "opacity-50" : ""
-            }`}
-          >
-            <div className="flex items-start gap-4">
-              <img 
-                src={testimonial.imageUrl || testimonial.image} 
-                alt={testimonial.name}
-                className="w-16 h-16 rounded-full object-cover"
-              />
-              <div className="flex-1">
-                <h3 className="font-bold">{testimonial.name}</h3>
-                <p className="text-sm text-gray-400">{testimonial.designation}</p>
-                <p className="text-sm text-gray-500">{testimonial.company}</p>
-                <a 
-                  href={testimonial.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs text-blue-400 hover:underline"
-                >
-                  View Profile
-                </a>
-                <p className="text-xs text-gray-500 mt-1">Order: {testimonial.order}</p>
+              className={`bg-gray-800 p-6 rounded-lg ${!testimonial.isActive ? "opacity-50" : ""
+                }`}
+            >
+              <div className="flex items-start gap-4">
+                <img
+                  src={testimonial.imageUrl || testimonial.image}
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full object-cover"
+                />
+                <div className="flex-1">
+                  <h3 className="font-bold">{testimonial.name}</h3>
+                  <p className="text-sm text-gray-400">{testimonial.designation}</p>
+                  <p className="text-sm text-gray-500">{testimonial.company}</p>
+                  <a
+                    href={testimonial.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-blue-400 hover:underline"
+                  >
+                    View Profile
+                  </a>
+                  <p className="text-xs text-gray-500 mt-1">Order: {testimonial.order}</p>
+                </div>
               </div>
-            </div>
-            <div className="flex gap-2 mt-4">
-              <button
-                onClick={() => toggleActive(testimonial)}
-                className={`flex-1 px-2 py-1 text-xs rounded ${
-                  testimonial.isActive
+              <div className="flex gap-2 mt-4">
+                <button
+                  onClick={() => toggleActive(testimonial)}
+                  className={`flex-1 px-2 py-1 text-xs rounded ${testimonial.isActive
                     ? "bg-green-600 hover:bg-green-700"
                     : "bg-gray-600 hover:bg-gray-700"
-                }`}
-              >
-                {testimonial.isActive ? "Active" : "Inactive"}
-              </button>
-              <button
-                onClick={() => handleEdit(testimonial)}
-                className="flex-1 bg-yellow-600 hover:bg-yellow-700 px-2 py-1 text-xs rounded"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(testimonial.id)}
-                className="flex-1 bg-red-600 hover:bg-red-700 px-2 py-1 text-xs rounded"
-              >
-                Delete
-              </button>
+                    }`}
+                >
+                  {testimonial.isActive ? "Active" : "Inactive"}
+                </button>
+                <button
+                  onClick={() => handleEdit(testimonial)}
+                  className="flex-1 bg-yellow-600 hover:bg-yellow-700 px-2 py-1 text-xs rounded"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(testimonial.id)}
+                  className="flex-1 bg-red-600 hover:bg-red-700 px-2 py-1 text-xs rounded"
+                >
+                  Delete
+                </button>
+              </div>
             </div>
-          </div>
           ))}
         </div>
       </div>

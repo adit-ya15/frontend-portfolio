@@ -59,6 +59,8 @@ model Testimonial {
   id          String   @id @default(cuid())
   testimonial String
   name        String
+  designation String   @default("")
+  company     String   @default("")
   image       String
   link        String
   order       Int      @default(0)

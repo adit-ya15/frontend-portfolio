@@ -1,180 +1,187 @@
+// =======================
+// Portfolio AI Assistant
+// =======================
+
 export function getOverview(): string {
   return [
-    '👋 Welcome! I\'m Suryansh\'s Portfolio AI Assistant.',
-    '',
-    'I can help you learn about:',
-    '• 💼 Professional Experience & Background',
-    '• 💻 Technical Skills & Technologies',
-    '• 🚀 Projects & Open Source Contributions',
-    '• 🏆 Achievements & Certifications',
-    '• 📊 GitHub & LeetCode Statistics',
-    '• 🏗️ Architecture & System Design',
-    '',
-    'Quick questions to try:',
-    '• "What are Suryansh\'s skills?"',
-    '• "Tell me about the SCS Cloud project"',
-    '• "What is his experience?"',
-    '• "Show me his GitHub stats"',
-    '',
-    'Feel free to ask me anything about Suryansh\'s professional background!',
-  ].join('\n');
+    "👋 Welcome! I'm Aditya Verma’s Portfolio AI Assistant.",
+    "",
+    "I can help you explore:",
+    "• 💼 Frontend Experience & Background",
+    "• 💻 Technical Skills & Tools",
+    "• 🚀 Projects & Case Studies",
+    "• 📊 GitHub & Coding Activity",
+    "• 🧠 UI Architecture & Performance Concepts",
+    "",
+    "Try asking:",
+    '• "What are Aditya’s skills?"',
+    '• "Tell me about his projects"',
+    '• "How does he optimize performance?"',
+    '• "Show GitHub stats"',
+    "",
+    "Feel free to ask anything about Aditya’s frontend journey!",
+  ].join("\n");
 }
 
-// ---- Professional Background ----
+// ---- Skills ----
 
 export function getSkillsOverview(): string {
   return [
-    '🛠️ Suryansh\'s Technical Skills:',
-    '',
-    '**Languages:**',
-    'JavaScript, TypeScript, Go, Python, Java, C, C++',
-    '',
-    '**Frontend:**',
-    'React, Next.js, HTML5, CSS3, Tailwind CSS, Framer Motion',
-    '',
-    '**Backend:**',
-    'Node.js, Express.js, GraphQL, Apache Kafka',
-    '',
-    '**Databases:**',
-    'MongoDB, PostgreSQL, Redis',
-    '',
-    '**Cloud & DevOps:**',
-    'Docker, Kubernetes, AWS, Google Cloud, Jenkins, Argo CD',
-    '',
-    '**Tools:**',
-    'Git, Firebase, Vercel, Netlify',
-  ].join('\n');
+    "🛠️ Aditya’s Technical Skillset:",
+    "",
+    "**Languages:**",
+    "JavaScript (ES6+), TypeScript, HTML5, CSS3",
+    "",
+    "**Frontend Frameworks & Libraries:**",
+    "React, React Router, Tailwind CSS, SCSS, Framer Motion, GSAP",
+    "",
+    "**State Management:**",
+    "Redux Toolkit, Context API",
+    "",
+    "**Authentication & Services:**",
+    "Firebase Authentication",
+    "",
+    "**Performance & UI Concepts:**",
+    "Lazy Loading, Code Splitting, Protected Routes, RBAC, Component Architecture",
+    "",
+    "**Tools & Platforms:**",
+    "Git, GitHub, Netlify, Vercel, VS Code",
+  ].join("\n");
 }
+
+// ---- Experience ----
 
 export function getExperienceOverview(): string {
   return [
-    '💼 Professional Experience:',
-    '',
-    'Suryansh is a **Full-Stack Developer** with expertise in:',
-    '• Building scalable cloud-native applications',
-    '• Microservices architecture and system design',
-    '• DevOps and container orchestration',
-    '• Backend development with Node.js and Go',
-    '• Frontend development with React and Next.js',
-    '',
-    'Check the Experience section in the portfolio for detailed work history and internships.',
-  ].join('\n');
+    "💼 Professional Overview:",
+    "",
+    "Aditya is a **Frontend Developer** focused on:",
+    "• Building scalable React applications",
+    "• Designing role-based dashboards (Admin / User)",
+    "• Implementing protected routes & authentication",
+    "• Writing clean, reusable component architecture",
+    "• Optimizing UI performance and Lighthouse scores",
+    "",
+    "He is actively seeking **frontend internship opportunities**.",
+  ].join("\n");
 }
+
+// ---- Projects ----
 
 export function getProjectsOverview(): string {
   return [
-    '🚀 Featured Projects:',
-    '',
-    '1. **SCS Cloud Platform**',
-    '   Cloud-native platform with HLS transcoding, static hosting, and object storage',
-    '   Tech: Node.js, Docker, Kubernetes, AWS',
-    '',
-    '2. **ExpressPro**',
-    '   NPM package for Express.js applications',
-    '   Published on npm with multiple features',
-    '',
-    '3. **Event Management App**',
-    '   Mobile-first app with React Native + Express',
-    '   Features: OTP/JWT authentication, fast search',
-    '',
-    '4. **3D Interactive Portfolio**',
-    '   This website! Built with Next.js, Three.js, and Framer Motion',
-    '',
-    'Visit the Projects section to see all projects with live demos and source code!',
-  ].join('\n');
+    "🚀 Featured Projects:",
+    "",
+    "1. **InsightDash – Role-Based Dashboard**",
+    "   Frontend-focused admin & user dashboard with protected routes",
+    "   Tech: React, Context API, React Router, SCSS, Netlify",
+    "",
+    "2. **AI-Powered Movie Recommendation App**",
+    "   Netflix-style UI with AI-based movie suggestions",
+    "   Tech: React, Redux, Firebase Auth, Gemini AI",
+    "",
+    "3. **Spylt Milk – Animated Brand Website**",
+    "   Animation-heavy marketing site inspired by modern brand pages",
+    "   Tech: React, Tailwind CSS, GSAP, ScrollTrigger",
+    "",
+    "Each project includes live demos, source code, and UI breakdowns.",
+  ].join("\n");
 }
 
-export function getSCSCloudDetails(): string {
+// ---- InsightDash Details ----
+
+export function getInsightDashDetails(): string {
   return [
-    '☁️ **SCS Cloud Platform** - Suryansh\'s Major Project',
-    '',
-    '**Overview:**',
-    'A comprehensive cloud-native platform providing multiple services:',
-    '',
-    '**Features:**',
-    '• 🎬 HLS Video Transcoding: Convert 1080p videos to adaptive streams (1080p/720p/480p/360p)',
-    '• 🌐 Static Website Hosting: Deploy React/Vite apps with CDN',
-    '• 📦 Object Storage: S3-compatible API for file management',
-    '',
-    '**Tech Stack:**',
-    '• Backend: Node.js, Express',
-    '• Infrastructure: Docker, Kubernetes',
-    '• Cloud: AWS (S3, EC2, IAM)',
-    '• Architecture: Microservices',
-    '',
-    '**Highlights:**',
-    '• Scalable microservices architecture',
-    '• Kubernetes-ready deployment',
-    '• Full DevOps pipeline integration',
-    '',
-    'Check the Architecture section to see detailed system design diagrams!',
-  ].join('\n');
+    "📊 **InsightDash – Role-Based Admin & User Dashboard**",
+    "",
+    "**Overview:**",
+    "A frontend-focused SaaS-style dashboard demonstrating real-world UI patterns.",
+    "",
+    "**Key Features:**",
+    "• 🔐 Role-Based Access Control (Admin / User)",
+    "• 🚦 Protected routes using React Router",
+    "• 📊 Dashboard widgets, tables & summaries",
+    "• ♻️ Reusable and scalable component structure",
+    "• 🌐 Netlify redirect handling for SPA routing",
+    "",
+    "**Tech Stack:**",
+    "React, Context API, React Router, SCSS, Netlify",
+    "",
+    "This project showcases real-world frontend architecture decisions.",
+  ].join("\n");
 }
+
+// ---- Contact ----
 
 export function getContactInfo(): string {
   return [
-    '📧 Get in Touch with Suryansh:',
-    '',
-    '• 📧 Email: Available in the Contact section',
-    '• 💼 LinkedIn: Check the social links',
-    '• 🐱 GitHub: github.com/suryanshvermaa',
-    '• 📄 Resume: Download button available in the hero section',
-    '',
-    'Feel free to reach out through the Contact form at the bottom of the portfolio!',
-  ].join('\n');
+    "📬 Contact Aditya Verma:",
+    "",
+    "• 💼 LinkedIn: Available in Social Profiles section",
+    "• 🐙 GitHub: github.com/adit-ya15",
+    "• 🌐 Portfolio: Live portfolio website",
+    "• 📄 Resume: Downloadable from hero section",
+    "",
+    "You can also reach out using the contact form on the website.",
+  ].join("\n");
 }
+
+// ---- GitHub Stats ----
 
 export function getGitHubStats(): string {
   return [
-    '📊 GitHub & Coding Statistics:',
-    '',
-    'Suryansh is an active developer with:',
-    '• Open source contributions',
-    '• Multiple NPM packages published',
-    '• Active GitHub profile with various projects',
-    '',
-    'Check the **Stats section** in the portfolio to see:',
-    '• GitHub contribution statistics',
-    '• Most used languages',
-    '• Repository activity',
-    '• LeetCode problem-solving stats',
-    '',
-    'Live stats are displayed with dynamic charts and graphs!',
-  ].join('\n');
+    "📊 GitHub Activity:",
+    "",
+    "Aditya maintains an active GitHub profile with:",
+    "• Frontend-focused projects",
+    "• Clean commit history",
+    "• Practical React implementations",
+    "",
+    "Stats section includes:",
+    "• Contribution graph",
+    "• Most-used languages",
+    "• Project activity overview",
+    "",
+    "All stats are displayed dynamically in the portfolio.",
+  ].join("\n");
 }
 
-export function getArchitectureDiagrams(): string {
+// ---- Architecture & UI Concepts ----
+
+export function getArchitectureOverview(): string {
   return [
-    '🏗️ Architecture & System Design:',
-    '',
-    'Suryansh has created detailed architecture diagrams showcasing:',
-    '',
-    '1. **Static Website Hosting Architecture**',
-    '   - CDN integration for React/Vite apps',
-    '   - Automated build pipelines',
-    '',
-    '2. **SCS Cloud Platform Architecture**',
-    '   - Complete microservices design',
-    '   - Kubernetes orchestration',
-    '   - Multi-service integration',
-    '',
-    '3. **HLS Video Transcoding Pipeline**',
-    '   - Multi-resolution video processing',
-    '   - Adaptive streaming generation',
-    '',
-    'Visit the **Architecture section** to view all diagrams in detail!',
-  ].join('\n');
+    "🧠 UI Architecture & Design Concepts:",
+    "",
+    "Aditya focuses on:",
+    "• Component-driven architecture",
+    "• Separation of concerns",
+    "• Clean folder structure",
+    "• Scalable routing patterns",
+    "",
+    "Key concepts demonstrated:",
+    "• Protected Routes",
+    "• Role-Based UI rendering",
+    "• Lazy Loading & Code Splitting",
+    "• Performance-aware rendering",
+    "",
+    "Architecture visuals are available in the portfolio.",
+  ].join("\n");
 }
+
+// ---- Education ----
 
 export function getEducationOverview(): string {
   return [
-    '🎓 Education & Certifications:',
-    '',
-    'Suryansh currently pursues a Bachelor\'s degree in Electrical Engineering from NIT Patna.',
-    '• Expected Graduation: 2027',
-    '• Relevant Coursework: Data Structures, Algorithms, Computer Networks, Database Management',
-    '• Certifications: Completed various online courses in Full-Stack Development, Cloud Computing, and DevOps from YouTube.',
-    '',
-    'Check the Education section in the portfolio for detailed information on degrees and certifications earned!',
-  ].join('\n');
+    "🎓 Education:",
+    "",
+    "• B.Tech in Electrical Engineering (Computer Science)",
+    "  Ajay Kumar Garg Engineering College, Ghaziabad",
+    "  CGPA: 8.01 | 2023 – 2027",
+    "",
+    "• CBSE Board (Class XII)",
+    "  Green Field Academy, Lakhimpur Kheri",
+    "  Percentage: 92%",
+    "",
+    "Currently focused on frontend development and UI engineering.",
+  ].join("\n");
 }

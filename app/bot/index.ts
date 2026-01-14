@@ -1,77 +1,90 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+const groq = new Groq({
+    apiKey: process.env.GROQ_API_KEY,
+});
 
-export async function getGroqChatCompletion(messages: Groq.Chat.Completions.ChatCompletionMessageParam[]) {
+export async function getGroqChatCompletion(
+    messages: Groq.Chat.Completions.ChatCompletionMessageParam[]
+) {
     return await groq.chat.completions.create({
-        messages: messages,
-        model: "openai/gpt-oss-120b", //OpenAI GPT-OSS 120B
-        temperature: 1.0,
+        model: "openai/gpt-oss-120b", // OpenAI GPT-OSS 120B via Groq
+        messages,
+        temperature: 0.7,
         tool_choice: "auto",
         tools: [
             {
                 type: "function",
                 function: {
                     name: "getOverview",
-                    description: "Provides a welcome message and overview of what the portfolio assistant can help with, including available topics and example questions."
-                }
+                    description:
+                        "Provides a welcome message and explains what Aditya Verma’s portfolio assistant can help with, including example questions.",
+                },
             },
             {
                 type: "function",
                 function: {
                     name: "getSkillsOverview",
-                    description: "Returns Suryansh's technical skills organized by category: Languages, Frontend, Backend, Databases, Cloud & DevOps, and Tools."
-                }
+                    description:
+                        "Returns Aditya Verma’s frontend-focused technical skills, including languages, frameworks, state management, UI tools, and platforms.",
+                },
             },
             {
                 type: "function",
                 function: {
                     name: "getExperienceOverview",
-                    description: "Provides an overview of Suryansh's professional experience, expertise areas, and work background."
-                }
+                    description:
+                        "Gives an overview of Aditya Verma’s frontend experience, areas of focus, and internship-oriented profile.",
+                },
             },
             {
                 type: "function",
                 function: {
                     name: "getProjectsOverview",
-                    description: "Lists Suryansh's featured projects including SCS Cloud Platform, ExpressPro, Event Management App, and the 3D Portfolio website with brief descriptions."
-                }
+                    description:
+                        "Lists Aditya Verma’s featured frontend projects such as InsightDash, AI Movie Recommendation App, and Spylt Milk with brief descriptions.",
+                },
             },
             {
                 type: "function",
                 function: {
-                    name: "getSCSCloudDetails",
-                    description: "Provides detailed information about the SCS Cloud Platform project including features (HLS transcoding, static hosting, object storage), tech stack, and architecture highlights."
-                }
+                    name: "getInsightDashDetails",
+                    description:
+                        "Provides detailed information about the InsightDash project including role-based access control, protected routes, UI components, and routing setup.",
+                },
             },
             {
                 type: "function",
                 function: {
                     name: "getContactInfo",
-                    description: "Returns information about how to contact Suryansh including email, LinkedIn, GitHub, and resume download options."
-                }
+                    description:
+                        "Returns ways to contact Aditya Verma including GitHub, LinkedIn, portfolio website, and resume access.",
+                },
             },
             {
                 type: "function",
                 function: {
                     name: "getGitHubStats",
-                    description: "Provides information about Suryansh's GitHub statistics, coding activity, LeetCode stats, and where to find detailed statistics in the portfolio."
-                }
+                    description:
+                        "Explains Aditya Verma’s GitHub activity, contribution stats, and where they are displayed in the portfolio.",
+                },
             },
             {
                 type: "function",
                 function: {
-                    name: "getArchitectureDiagrams",
-                    description: "Describes the architecture diagrams available in the portfolio including hosting architecture, SCS Cloud Platform design, and HLS transcoding pipeline."
-                }
+                    name: "getArchitectureOverview",
+                    description:
+                        "Describes frontend architecture concepts used by Aditya Verma such as component architecture, protected routes, lazy loading, and performance optimization.",
+                },
             },
             {
                 type: "function",
-                function:{
-                    name:"getEducationOverview",
-                    description:"Provides an overview of Suryansh's educational background including degrees, institutions, and relevant coursework."
-                }
-            }
-        ]
+                function: {
+                    name: "getEducationOverview",
+                    description:
+                        "Provides an overview of Aditya Verma’s education including college, degree, CGPA, and academic background.",
+                },
+            },
+        ],
     });
 }

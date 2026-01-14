@@ -1,12 +1,12 @@
-import { NextRequest,NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { transporter } from "../config";
 
-async function sendMailToMe(email:string,subject:string,message:string, name:string){
+async function sendMailToMe(email: string, subject: string, message: string, name: string) {
     await transporter.sendMail({
         from: process.env.MY_EMAIL!,
-        to:process.env.MY_EMAIL!,
+        to: process.env.MY_EMAIL!,
         subject,
-        html:`
+        html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -79,7 +79,7 @@ async function sendMailToMe(email:string,subject:string,message:string, name:str
                                         This email was sent from your portfolio contact form
                                     </p>
                                     <p style="margin: 10px 0 0 0; color: #666580; font-size: 12px;">
-                                        &copy; ${new Date().getFullYear()} Suryansh Verma Portfolio. All rights reserved.
+                                        &copy; ${new Date().getFullYear()} Aditya Verma Portfolio. All rights reserved.
                                     </p>
                                 </td>
                             </tr>
@@ -90,15 +90,15 @@ async function sendMailToMe(email:string,subject:string,message:string, name:str
         </body>
         </html>
         `
-     })
+    })
 }
 
-async function sendMailToSender(senderEmail:string,subject:string, name:string){
+async function sendMailToSender(senderEmail: string, subject: string, name: string) {
     await transporter.sendMail({
-        from:process.env.MY_EMAIL!,
-        to:senderEmail,
+        from: process.env.MY_EMAIL!,
+        to: senderEmail,
         subject,
-        html:`
+        html: `
         <!DOCTYPE html>
         <html lang="en">
         <head>
@@ -154,12 +154,12 @@ async function sendMailToSender(senderEmail:string,subject:string, name:string){
                                     <table role="presentation" style="width: 100%; margin: 20px 0;">
                                         <tr>
                                             <td style="padding: 8px; width: 50%;">
-                                                <a href="https://github.com/suryanshvermaa" style="display: block; background: #1a1543; color: #915eff; text-decoration: none; padding: 12px; border-radius: 8px; text-align: center; font-size: 14px; border: 1px solid rgba(145, 94, 255, 0.2);">
+                                                <a href="https://github.com/adit-ya15" style="display: block; background: #1a1543; color: #915eff; text-decoration: none; padding: 12px; border-radius: 8px; text-align: center; font-size: 14px; border: 1px solid rgba(145, 94, 255, 0.2);">
                                                     🔗 GitHub Profile
                                                 </a>
                                             </td>
                                             <td style="padding: 8px; width: 50%;">
-                                                <a href="https://linkedin.com/in/suryanshvermaa" style="display: block; background: #1a1543; color: #915eff; text-decoration: none; padding: 12px; border-radius: 8px; text-align: center; font-size: 14px; border: 1px solid rgba(145, 94, 255, 0.2);">
+                                                <a href="https://www.linkedin.com/in/aditya-verma-a809b4344/" style="display: block; background: #1a1543; color: #915eff; text-decoration: none; padding: 12px; border-radius: 8px; text-align: center; font-size: 14px; border: 1px solid rgba(145, 94, 255, 0.2);">
                                                     💼 LinkedIn
                                                 </a>
                                             </td>
@@ -171,10 +171,10 @@ async function sendMailToSender(senderEmail:string,subject:string, name:string){
                                             Best regards,
                                         </p>
                                         <p style="margin: 0; color: #915eff; font-size: 18px; font-weight: bold;">
-                                            Suryansh Verma
+                                            Aditya Verma
                                         </p>
                                         <p style="margin: 5px 0 0 0; color: #666580; font-size: 13px;">
-                                            Full-Stack Developer | Cloud & DevOps Engineer
+                                            Frontend Developer | Crafting Interfaces and Scalable UI
                                         </p>
                                     </div>
                                 </td>
@@ -187,7 +187,7 @@ async function sendMailToSender(senderEmail:string,subject:string, name:string){
                                         This is an automated response to confirm we received your message.
                                     </p>
                                     <p style="margin: 0; color: #666580; font-size: 12px;">
-                                        &copy; ${new Date().getFullYear()} Suryansh Verma Portfolio. All rights reserved.
+                                        &copy; ${new Date().getFullYear()} Aditya Verma Portfolio. All rights reserved.
                                     </p>
                                 </td>
                             </tr>
@@ -198,7 +198,7 @@ async function sendMailToSender(senderEmail:string,subject:string, name:string){
         </body>
         </html>
         `
-     })
+    })
 }
 
 export async function POST(request: NextRequest) {
