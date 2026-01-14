@@ -10,7 +10,7 @@ const navLinks = [
 	{ id: "projects", title: "Projects" },
 	{ id: "videos", title: "Videos" },
 	{ id: "stats", title: "Stats" },
-	{ id: "diagrams", title: "Architecture" },
+	// { id: "diagrams", title: "Architecture" },
 	{ id: "contact", title: "Contact" },
 ];
 
@@ -36,11 +36,10 @@ const Navbar = () => {
 
 	return (
 		<nav
-			className={`paddingX w-full flex items-center py-4 fixed top-0 z-40 transition-colors duration-300 ${
-				scrolled
-					? "bg-primary/90 backdrop-blur-md border-b border-white/5"
-					: "bg-transparent"
-			}`}
+			className={`paddingX w-full flex items-center py-4 fixed top-0 z-40 transition-colors duration-300 ${scrolled
+				? "bg-primary/90 backdrop-blur-md border-b border-white/5"
+				: "bg-transparent"
+				}`}
 		>
 			<div className="w-full flex justify-between items-center max-w-7xl mx-auto min-h-[56px]">
 				{/* Brand */}
@@ -52,18 +51,18 @@ const Navbar = () => {
 						window.scrollTo({ top: 0, behavior: "smooth" });
 					}}
 				>
-					<Link href="https://github.com/suryanshvermaa" className="shrink-0">
+					<Link href="https://github.com/adit-ya15" className="shrink-0">
 						<Image
-							src="https://avatars.githubusercontent.com/u/154125921"
+							src="https://avatars.githubusercontent.com/u/209531231?v=4"
 							width={56}
 							height={56}
-							alt="Suryansh Verma avatar"
+							alt="Aditya Verma avatar"
 							priority
 							className="object-cover rounded-full ring-2 ring-[#915EFF] shadow-sm"
 						/>
 					</Link>
-					<p className="text-white text-base sm:text-lg font-bold cursor-pointer flex flex-wrap leading-tight">
-						Suryansh <span className="hidden xs:inline sm:inline">&nbsp;|&nbsp;suryanshvermaa</span>
+					<p className="text-white text-base sm:text-2xl font-bold cursor-pointer flex flex-wrap leading-tight">
+						Aditya <span className="hidden xs:inline sm:inline">&nbsp;|&nbsp;adit-ya15</span>
 					</p>
 				</button>
 

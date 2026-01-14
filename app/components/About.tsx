@@ -80,10 +80,12 @@ const About = () => {
 
 			<motion.p
 				variants={fadeIn("", "", 0.1, 1)}
-				className="mt-4 text-secondary text-[16px] sm:text-[17px] max-w-3xl leading-relaxed"
+				className="mt-4 text-secondary text-[16px] sm:text-[17px] lg:text-[19px] max-w-3xl leading-relaxed"
 			>
-				I’m <span className="text-white font-semibold">Suryansh Verma</span>, a
-				<strong className="text-white"> Full-Stack Developer & Cloud/DevOps Engineer</strong> passionate about designing scalable, distributed, cloud-native systems using Node.js, Golang, C++, Docker, Kubernetes, and AWS. I love building production-ready platforms that blend elegant backend design with robust infrastructure & automation. Currently exploring Golang, Microservice Architecture & Generative AI while contributing to open-source and crafting developer-first tools. Open to internships and collaboration on cloud, backend, or DevOps projects.
+				I’m <span className="text-white font-semibold">Aditya Verma</span>, a
+				<strong className="text-white font-semibold"> frontend-focused developer</strong> who enjoys building <strong className="text-white font-semibold">clean, performant, and scalable web applications</strong> using React and modern frontend tools.
+				I have hands-on experience creating <strong className="text-white font-semibold">real-world UI patterns</strong> such as <strong className="text-white font-semibold">role-based dashboards, protected routes, global state management</strong>, and <strong className="text-white font-semibold">animation-heavy interfaces</strong>. My work focuses on <strong className="text-white font-semibold">component architecture, performance optimization, and clean UI/UX</strong>, rather than just making things “work”.
+				Through projects like <strong className="text-white font-semibold">InsightDash</strong>, <strong className="text-white font-semibold">AI-Powered Movie Recommendation App</strong>, and <strong className="text-white font-semibold">Spylt Milk</strong>, I’ve worked on problems involving <strong className="text-white font-semibold">authentication flows, conditional rendering, AI integration</strong>, and <strong className="text-white font-semibold">smooth motion design</strong>. I’m actively seeking <strong className="text-white font-semibold">frontend internship opportunities</strong> where I can learn from experienced engineers and contribute to impactful products.
 			</motion.p>
 			<div className="mt-20 flex flex-wrap gap-10 justify-center">
 				{services.map((service, index) => (

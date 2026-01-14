@@ -35,8 +35,8 @@ const Hero = () => {
 				<div>
 					<div className="flex items-center gap-6 flex-wrap">
 						<Image
-							src="https://avatars.githubusercontent.com/u/154125921"
-							alt="Suryansh Verma"
+							src="https://avatars.githubusercontent.com/u/209531231?v=4"
+							alt="Aditya Verma"
 							width={96}
 							height={96}
 							priority
@@ -47,7 +47,7 @@ const Hero = () => {
 								Hi, I&apos;m <span className="text-[#915EFF] ">Aditya Verma</span>
 							</h1>
 							<p className="heroSubText mt-2">
-								React Frontend Developer · Cloud & DevOps Engineer
+								Frontend Engineer · Crafting Interfaces & Scalable Frontend
 							</p>
 						</div>
 					</div>

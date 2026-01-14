@@ -54,6 +54,26 @@ const nextConfig = {
 				protocol: 'https',
 				hostname: 'res.cloudinary.com', // Allow Cloudinary images
 			},
+			{
+				protocol: 'https',
+				hostname: 'raw.githubusercontent.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'suryanshverma.vercel.app',
+			},
+			{
+				protocol: 'https',
+				hostname: 'encrypted-tbn0.gstatic.com',
+			},
+			{
+				protocol: 'https',
+				hostname: 'education.oracle.com',
+			},
+			{
+				protocol: 'http',
+				hostname: 'education.oracle.com',
+			},
 		],
 	},
 };
