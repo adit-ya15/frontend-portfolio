@@ -9,9 +9,9 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 
 > **Built upon:** [omunite215/Project_3DPortfolio](https://github.com/omunite215/Project_3DPortfolio) — Extended with complete backend infrastructure and dynamic content management.
 
-🌐 **[Live Demo](https://suryanshverma.vercel.app)**
+🌐 **[Live Demo](https://aditya-frontend-portfolio.vercel.app/)**
 
-![Portfolio Preview](https://suryanshvermaa.s3.ap-south-1.amazonaws.com/HomePage.png)
+![Portfolio Preview](https://res.cloudinary.com/dffcz4upe/image/upload/v1768413608/Screenshot_2026-01-14_232950_ih0smn.png)
 
 ---
 
@@ -27,7 +27,7 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 - ✅ Complete backend (PostgreSQL + Prisma ORM)
 - ✅ Secure admin panel (NextAuth.js)
 - ✅ AI chatbot (Groq SDK)
-- ✅ Cloud storage (AWS S3) with signed URLs
+- ✅ Cloud storage (Cloudinary)
 - ✅ Redis caching (Upstash)
 - ✅ Video demos, diagrams, testimonials, stats
 - ✅ Dynamic navigation & resume management
@@ -56,7 +56,7 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 **Backend:**
 - PostgreSQL database (Neon recommended)
 - Prisma ORM for type safety
-- AWS S3 cloud storage
+- Cloudinary cloud storage
 - Redis caching
 - Dual email delivery
 
@@ -65,7 +65,7 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 ## 🛠️ Tech Stack
 
 **Frontend:** Next.js 14, TypeScript, Tailwind CSS, Framer Motion, Three.js  
-**Backend:** PostgreSQL, Prisma, NextAuth.js, AWS S3  
+**Backend:** PostgreSQL, Prisma, NextAuth.js, Cloudinary  
 **Additional:** Groq AI, Upstash Redis, Nodemailer, EmailJS  
 **Deployment:** Vercel
 
@@ -83,7 +83,7 @@ A production-ready, full-stack portfolio application with 3D animations, admin p
 
 ```bash
 # Clone repository
-git clone https://github.com/suryanshvermaa/3DPortfolio.git
+git clone https://github.com/adit-ya15/frontend-portfolio.git
 cd 3DPortfolio
 
 # Install dependencies
@@ -117,12 +117,10 @@ DATABASE_URL="postgresql://user:password@host:5432/database?sslmode=require"
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="your-secret-key-here"
 
-# AWS S3 / Tebi.io
-AWS_ACCESS_KEY_ID="your-access-key"
-AWS_SECRET_ACCESS_KEY="your-secret-key"
-AWS_REGION="ap-south-1"
-AWS_BUCKET_NAME="your-bucket-name"
-AWS_S3_ENDPOINT="https://s3.tebi.io"  # Optional for Tebi.io
+# Cloudinary
+CLOUDINARY_CLOUD_NAME="your-cloud-name"
+CLOUDINARY_API_KEY="your-api-key"
+CLOUDINARY_API_SECRET="your-api-secret"
 
 # Email
 MY_EMAIL="your-email@gmail.com"
@@ -223,10 +221,6 @@ npx prisma generate
 - Check `DATABASE_URL` in `.env`
 - Verify database accessibility
 
-**Upload errors:**
-- Verify AWS credentials
-- Check bucket permissions
-
 **Authentication issues:**
 - Ensure admin user exists
 - Check `NEXTAUTH_SECRET` is set
@@ -243,8 +237,8 @@ npx prisma generate
 
 ## 👥 Contributors
 
-<a href="https://github.com/suryanshvermaa/3DPortfolio/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=suryanshvermaa/3DPortfolio" />
+<a href="https://github.com/adit-ya15/frontend-portfolio/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=adit-ya15/frontend-portfolio" />
 </a>
 
 ---
@@ -257,6 +251,6 @@ MIT License - see [LICENSE](LICENCE) file.
 
 ## 📧 Contact
 
-**Suryansh Verma**  
-🌐 [Portfolio](https://suryanshverma.vercel.app) • 💼 [LinkedIn](https://www.linkedin.com/in/suryanshvermaa) • 🐙 [GitHub](https://github.com/suryanshvermaa)
+**Aditya Verma**  
+🌐 [Portfolio](https://aditya-frontend-portfolio.vercel.app/) • 💼 [LinkedIn](https://www.linkedin.com/in/aditya-verma-a809b4344/) • 🐙 [GitHub](https://github.com/adit-ya15)
 
