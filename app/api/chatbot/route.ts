@@ -15,6 +15,8 @@ import { systemPrompt } from "@/app/bot/system_prompt";
 import Groq from "groq-sdk";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: NextRequest) {
     try {
         let { message, sessionId } = await req.json();

@@ -1,12 +1,13 @@
 import Groq from "groq-sdk";
 
-const groq = new Groq({
-    apiKey: process.env.GROQ_API_KEY,
+const groqClient = () => new Groq({
+    apiKey: process.env.GROQ_API_KEY || "dummy-key-for-build",
 });
 
 export async function getGroqChatCompletion(
     messages: Groq.Chat.Completions.ChatCompletionMessageParam[]
 ) {
+    const groq = groqClient();
     return await groq.chat.completions.create({
         model: "openai/gpt-oss-120b", // OpenAI GPT-OSS 120B via Groq
         messages,
