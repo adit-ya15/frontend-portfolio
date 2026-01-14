@@ -41,10 +41,36 @@ export async function GET(req: NextRequest) {
       });
     }
 
-    const technologyGroups = Object.keys(grouped).map(groupName => ({
-      title: groupName,
-      items: grouped[groupName],
-    }));
+    const desiredOrder = [
+      "Frontend",
+      "Core Frontend Concepts",
+      "Languages",
+      "Databases & Cache",
+      "Tools & Platforms"
+    ];
+
+
+
+    const technologyGroups = Object.keys(grouped)
+      .sort((a, b) => {
+        const normalize = (s: string) => s.toLowerCase().trim();
+        const indexA = desiredOrder.findIndex(order => normalize(order) === normalize(a));
+        const indexB = desiredOrder.findIndex(order => normalize(order) === normalize(b));
+
+        // If both are in the list, sort by index
+        if (indexA !== -1 && indexB !== -1) {
+          return indexA - indexB;
+        }
+        // If one is in the list, the one in the list comes first
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+        // If neither is in the list, sort naturally
+        return a.localeCompare(b);
+      })
+      .map(groupName => ({
+        title: groupName,
+        items: grouped[groupName],
+      }));
 
     return NextResponse.json(technologyGroups);
   } catch (error) {

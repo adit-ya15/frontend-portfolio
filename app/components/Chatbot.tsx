@@ -16,7 +16,7 @@ const Chatbot = () => {
 	const [messages, setMessages] = useState<Message[]>([
 		{
 			id: "1",
-			text: "Hi! I'm Suryansh's AI assistant. Ask me anything about his skills, experience, or projects!",
+			text: "Hi! I'm Aditya's AI assistant. Ask me anything about his skills, experience, or projects!",
 			sender: "bot",
 			timestamp: new Date(),
 		},
@@ -55,9 +55,9 @@ const Chatbot = () => {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ 
+				body: JSON.stringify({
 					message: inputMessage,
-					sessionId: sessionId 
+					sessionId: sessionId
 				}),
 			});
 
@@ -135,7 +135,7 @@ const Chatbot = () => {
 						{/* Header */}
 						<div className="bg-[#915EFF] p-4 text-white">
 							<h3 className="font-bold text-lg">AI Assistant</h3>
-							<p className="text-xs opacity-90">Ask me about Suryansh</p>
+							<p className="text-xs opacity-90">Ask me about Aditya</p>
 						</div>
 
 						{/* Messages Container */}
@@ -146,11 +146,10 @@ const Chatbot = () => {
 									className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
 								>
 									<div
-										className={`max-w-[80%] rounded-2xl px-4 py-2 ${
-											message.sender === "user"
+										className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.sender === "user"
 												? "bg-[#915EFF] text-white"
 												: "bg-[#1d1836] text-white border border-white/10"
-										}`}
+											}`}
 									>
 										{message.sender === "bot" ? (
 											<div className="text-sm prose prose-invert prose-sm max-w-none">

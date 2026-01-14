@@ -20,7 +20,7 @@ const Stats = () => {
 						{/* GitHub Stats Card */}
 						<div className="w-full sm:w-[48%] lg:w-[32%] bg-tertiary rounded-2xl p-1">
 							<img
-								src="https://github-readme-stats.vercel.app/api?username=suryanshvermaa&show_icons=true&theme=radical&hide_border=true&bg_color=151030&title_color=915EFF&icon_color=915EFF&text_color=FFFFFF"
+								src="https://github-readme-stats-sigma-five.vercel.app/api?username=adit-ya15&show_icons=true&hide_border=true&bg_color=151030&title_color=915EFF&icon_color=915EFF&text_color=ffffff"
 								alt="GitHub Stats"
 								className="w-full h-auto rounded-2xl"
 							/>
@@ -29,7 +29,7 @@ const Stats = () => {
 						{/* GitHub Streak */}
 						<div className="w-full sm:w-[48%] lg:w-[32%] bg-tertiary rounded-2xl p-1">
 							<img
-								src="https://github-readme-streak-stats.herokuapp.com/?user=suryanshvermaa&theme=radical&hide_border=true&background=151030&ring=915EFF&fire=915EFF&currStreakLabel=915EFF"
+								src="https://github-readme-streak-stats.herokuapp.com/?user=adit-ya15&theme=radical&hide_border=true&background=151030&ring=915EFF&fire=915EFF&currStreakLabel=915EFF"
 								alt="GitHub Streak"
 								className="w-full h-auto rounded-2xl"
 							/>
@@ -38,7 +38,7 @@ const Stats = () => {
 						{/* Most Commit Language */}
 						<div className="w-full sm:w-[48%] lg:w-[32%] bg-tertiary rounded-2xl p-1">
 							<img
-								src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=suryanshvermaa&theme=tokyonight"
+								src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=adit-ya15&theme=tokyonight"
 								alt="Most Commit Language"
 								className="w-full h-auto rounded-2xl"
 							/>
@@ -47,7 +47,7 @@ const Stats = () => {
 						{/* Repos Per Language */}
 						<div className="w-full sm:w-[48%] lg:w-[32%] bg-tertiary rounded-2xl p-1">
 							<img
-								src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=suryanshvermaa&theme=tokyonight"
+								src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=adit-ya15&theme=tokyonight"
 								alt="Repos Per Language"
 								className="w-full h-auto rounded-2xl"
 							/>
@@ -60,13 +60,13 @@ const Stats = () => {
 					<h3 className="text-white text-[24px] font-bold mb-8 text-center">LeetCode Statistics</h3>
 					<div className="flex justify-center">
 						{/* LeetCode Stats Card */}
-							<div className="w-full max-w-[600px] bg-tertiary rounded-2xl p-1">
-								<img
-									src="https://leetcard.jacoblin.cool/suryanshverma_1?theme=dark&font=Ubuntu&ext=activity"
-									alt="LeetCode Stats"
-									className="w-full h-auto rounded-2xl"
-								/>
-							</div>
+						<div className="w-full max-w-[600px] bg-tertiary rounded-2xl p-1">
+							<img
+								src="https://leetcard.jacoblin.cool/aditya262701?theme=dark&font=Ubuntu&ext=activity"
+								alt="LeetCode Stats"
+								className="w-full h-auto rounded-2xl"
+							/>
+						</div>
 					</div>
 				</motion.div>
 			</div>

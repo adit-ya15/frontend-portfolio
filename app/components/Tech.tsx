@@ -76,7 +76,7 @@ const Tech = ({ isLoaded }: { isLoaded: boolean }) => {
 										alt={tech.name}
 										width={56}
 										height={56}
-										className="object-contain drop-shadow-sm"
+										className="object-contain drop-shadow-sm filter: drop-shadow(0 0 10px rgba(139,92,246,0.6))"
 									/>
 								</div>
 								<p className="mt-3 text-center text-sm text-secondary group-hover:text-white transition-colors">
