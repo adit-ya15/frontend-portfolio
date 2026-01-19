@@ -55,6 +55,19 @@ const Hero = () => {
 			</div>
 			{/* Only render 3D on medium screens and up for better mobile performance */}
 			{isMobile === false && <ComputersCanvas />}
+			{isMobile === true && (
+				<div className="absolute inset-0 flex items-center justify-center pointer-events-none pt-32 sm:pt-40">
+					<div className="relative w-full h-full max-w-[90%] max-h-[70%] mt-80">
+						<Image
+							src="/hero-mobile.png"
+							alt="Hero Mobile"
+							fill
+							priority
+							className="object-contain drop-shadow-xl"
+						/>
+					</div>
+				</div>
+			)}
 			<div className="absolute xs:bottom-3 bottom-24 w-full flex justify-center items-center">
 				<a href="#about">
 					<div className="w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2">
