@@ -11,6 +11,21 @@ interface Message {
 	timestamp: Date;
 }
 
+const processContent = (content: React.ReactNode): React.ReactNode => {
+	if (typeof content === "string") {
+		return content.split(/<br\s*\/?>/gi).map((part, index, array) => (
+			<React.Fragment key={index}>
+				{part}
+				{index < array.length - 1 && <br />}
+			</React.Fragment>
+		));
+	}
+	if (Array.isArray(content)) {
+		return content.map((child, i) => <React.Fragment key={i}>{processContent(child)}</React.Fragment>);
+	}
+	return content;
+};
+
 const Chatbot = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [messages, setMessages] = useState<Message[]>([
@@ -147,19 +162,19 @@ const Chatbot = () => {
 								>
 									<div
 										className={`max-w-[80%] rounded-2xl px-4 py-2 ${message.sender === "user"
-												? "bg-[#915EFF] text-white"
-												: "bg-[#1d1836] text-white border border-white/10"
+											? "bg-[#915EFF] text-white"
+											: "bg-[#1d1836] text-white border border-white/10"
 											}`}
 									>
 										{message.sender === "bot" ? (
-											<div className="text-sm prose prose-invert prose-sm max-w-none">
+											<div className="text-sm prose prose-invert prose-sm max-w-none break-words overflow-x-auto">
 												<ReactMarkdown
 													remarkPlugins={[remarkGfm]}
 													components={{
-														p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+														p: ({ node, children, ...props }) => <p className="mb-2 last:mb-0" {...props}>{processContent(children)}</p>,
 														ul: ({ node, ...props }) => <ul className="list-disc ml-4 mb-2" {...props} />,
 														ol: ({ node, ...props }) => <ol className="list-decimal ml-4 mb-2" {...props} />,
-														li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+														li: ({ node, children, ...props }) => <li className="mb-1 [&>p]:inline" {...props}>{processContent(children)}</li>,
 														strong: ({ node, ...props }) => <strong className="font-bold text-[#915EFF]" {...props} />,
 														code: ({ node, inline, ...props }: any) =>
 															inline ? (
@@ -173,6 +188,12 @@ const Chatbot = () => {
 														h1: ({ node, ...props }) => <h1 className="text-lg font-bold mb-2" {...props} />,
 														h2: ({ node, ...props }) => <h2 className="text-base font-bold mb-2" {...props} />,
 														h3: ({ node, ...props }) => <h3 className="text-sm font-bold mb-1" {...props} />,
+														table: ({ node, ...props }) => <table className="min-w-full border-collapse border border-white/20 my-2" {...props} />,
+														thead: ({ node, ...props }) => <thead className="bg-white/10" {...props} />,
+														tbody: ({ node, ...props }) => <tbody className="bg-transparent" {...props} />,
+														tr: ({ node, ...props }) => <tr className="border-b border-white/10" {...props} />,
+														th: ({ node, children, ...props }) => <th className="border border-white/20 p-2 text-left font-bold" {...props}>{processContent(children)}</th>,
+														td: ({ node, children, ...props }) => <td className="border border-white/20 p-2 align-top" {...props}>{processContent(children)}</td>,
 													}}
 												>
 													{message.text}

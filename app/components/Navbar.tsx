@@ -148,7 +148,7 @@ const Navbar = () => {
 				</ul>
 				<div className="px-8 pb-10">
 					<ResumeButton />
-					<p className="text-center text-xs text-secondary mt-4">© {new Date().getFullYear()} Suryansh Verma</p>
+					<p className="text-center text-xs text-secondary mt-4">© {new Date().getFullYear()} Aditya Verma</p>
 				</div>
 			</div>
 		</nav>
