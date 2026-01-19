@@ -49,27 +49,9 @@ const ServiceCard = ({ index, title, icon }: ServiceCardProps) => {
 	);
 };
 
-const About = () => {
-	const [services, setServices] = useState<Array<{ id: string; title: string; icon: string }>>([]);
-	const [loading, setLoading] = useState(true);
+const About = ({ services }: { services: Service[] }) => {
 
-	useEffect(() => {
-		const loadServices = async () => {
-			try {
-				const data = await fetchServices();
-				setServices(data);
-			} catch (error) {
-				console.error('Failed to load services:', error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		loadServices();
-	}, []);
-
-	if (loading) {
-		return <div className="text-center py-20">Loading...</div>;
-	}
+	// Removed internal fetching logic as data is now passed from parent
 
 	return (
 		<>

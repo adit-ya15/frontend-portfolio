@@ -29,17 +29,26 @@ import {
 
 export default function Home() {
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [services, setServices] = useState<any[]>([]);
 
 	useEffect(() => {
 		async function loadAll() {
-			await Promise.all([
+			const [
+				experiencesData,
+				servicesData,
+				technologiesData,
+				projectsData,
+				testimonialsData,
+				statsData
+			] = await Promise.all([
 				fetchExperiences(),
-				fetchTechnologies(),
 				fetchServices(),
+				fetchTechnologies(),
 				fetchProjects(),
 				fetchTestimonials(),
 				fetchStats(),
 			]);
+			setServices(servicesData);
 			setIsLoaded(true);
 		}
 		loadAll();
@@ -59,7 +68,7 @@ export default function Home() {
 				<Navbar />
 				<Hero />
 			</div>
-			<About />
+			<About services={services} />
 			<Experience isLoaded={isLoaded} />
 			<Tech isLoaded={isLoaded} />
 			<Articles />
